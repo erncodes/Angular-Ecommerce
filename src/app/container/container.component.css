@@ -1,0 +1,13 @@
+.card-img-top{
+    height: 24rem;
+    width: auto;
+}
+#mainHeader{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+  }
+#router-outlet{
+    margin-top: 140px;
+}

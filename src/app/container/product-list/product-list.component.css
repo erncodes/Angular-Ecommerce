@@ -1,0 +1,69 @@
+.card{
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+    padding: 7.5px;
+    overflow: hidden;
+}
+.card-img-top{
+    transition: transform 0.5s ease-in-out;
+}
+.card:hover .card-img-top{
+    transform: scale(1.05);
+}
+.price-tag{
+    position: absolute;
+    top: 65%;
+    right: 0;
+    background-color: #000000;
+    color: white;
+    padding: 2.5px 5px;
+}
+.price-tag p{
+    margin: auto 0;
+}
+.discount-div{
+    position: absolute;
+    top: 12%;
+    right: 0;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 2.5px 5px;
+}
+.discount-div p{
+    margin: auto 0;
+}
+.heart-icon{
+    position: absolute;
+    font-size: larger;
+    top: 3%;
+    right: 3%;
+    padding: 2.5px 5px;
+    transition: all 0.5s ease-in-out;
+}
+.sizes{
+    border: 0.5px solid black;
+    margin: 5px;
+    text-align: center;
+    padding: 8px 0;
+    transition: all 0.5s ease-in-out;
+}
+.sizes p{
+    margin: auto;
+}
+.size-div{
+    background-color: #ffffff;
+    position: absolute;
+    bottom: -15%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+.card:hover .size-div{
+    transform: translateY(-150%);
+    width: 100%;
+    z-index: 6;
+}
