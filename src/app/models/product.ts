@@ -9,7 +9,6 @@
       leftInStock: number;
       price: number;
       discount: number;
-      quantity?: number = 0;
 
       constructor(id : number, title : string ,description : string , sizes : number[], 
             colors : string[],image : string,isInStock : boolean,

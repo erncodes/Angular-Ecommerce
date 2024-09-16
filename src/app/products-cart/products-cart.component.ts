@@ -11,29 +11,33 @@ import { Product } from '../models/product';
 export class ProductsCartComponent{
   faTrashAlt = faTrashAlt;
   cartTotal : number = 0;
-  prodQuantity : number = 1;
   cartCount : number = 0;
   cartProducts : any[] = [];
   cartService : CartService = inject(CartService);
 
+
   ngOnInit(){
-    this.cartService.AddToCartItem.subscribe((prod)=>{
-      if(this.cartProducts.includes(prod)){
-            this.cartTotal += prod.price;
-      }
-      else{
-      this.cartProducts.push(prod);
+    this.cartService.GetCartProducts().subscribe((prodArray)=>{
+      this.cartProducts = prodArray;
       this.cartCount = this.cartProducts.length;
-      this.cartProducts.forEach((prod)=>{
-      this.cartTotal += prod.price;
-      })
+      this.GetCartTotal();
     }
-    })
+  )
   }
   RemoveItem(prod : any){
-    this.cartProducts.splice(prod.index ,1);
-    this.cartCount = this.cartProducts.length;
-    this.cartTotal -= prod.price;
+   this.cartService.RemoveFromCart(prod);
+  }
+  IncreaseQuantity(prod : any){
+    this.cartService.IncreaseQuantity(prod);
+  }
+  DecreaseQuantity(prod : any){
+    this.cartService.DecreaseQuantity(prod);
+  }
+  GetCartTotal(){
+   this.cartTotal = this.cartService.cartTotal;
+  }
+  ClearCart(){
+    this.cartTotal = 0;
   }
 
 }

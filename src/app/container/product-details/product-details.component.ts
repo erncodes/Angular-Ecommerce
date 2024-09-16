@@ -10,19 +10,19 @@ import { CartService } from 'src/app/services/productCart.services';
 })
 export class ProductDetailsComponent implements OnInit{
   constructor(){
-    
   }
   selectedProd : any;
   prodService : ProductService = inject(ProductService);
   cartService : CartService = inject(CartService);
+  cartProducts : Product[] = [];
 
   ngOnInit(){
+
     this.prodService.productClicked.subscribe((prod)=>{
       this.selectedProd = prod;
     });
-
   }
   AddToCart(prod : Product){
-    this.cartService.AddToCartItem.next(prod);
+    this.cartService.AddToCart(prod);
   }
 }
