@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../services/productCart.services';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { Product } from '../models/product';
 
 @Component({
   selector: 'app-products-cart',
@@ -31,7 +30,10 @@ export class ProductsCartComponent{
     this.cartService.IncreaseQuantity(prod);
   }
   DecreaseQuantity(prod : any){
-    this.cartService.DecreaseQuantity(prod);
+    if(this.cartCount === 0){this.ClearCart()}
+    else{
+      this.cartService.DecreaseQuantity(prod);
+    }
   }
   GetCartTotal(){
    this.cartTotal = this.cartService.cartTotal;
