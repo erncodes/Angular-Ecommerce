@@ -29,3 +29,20 @@
 .navbar{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
+.cartContainer-li{
+  position: relative;
+}
+.cartCount{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    padding: auto;
+    font-size: 12px;
+}

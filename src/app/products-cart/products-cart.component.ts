@@ -7,7 +7,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
   templateUrl: './products-cart.component.html',
   styleUrls: ['./products-cart.component.css']
 })
-export class ProductsCartComponent{
+export class ProductsCartComponent implements OnInit{
   faTrashAlt = faTrashAlt;
   cartTotal : number = 0;
   cartCount : number = 0;
@@ -19,24 +19,20 @@ export class ProductsCartComponent{
     this.cartService.GetCartProducts().subscribe((prodArray)=>{
       this.cartProducts = prodArray;
       this.cartCount = this.cartProducts.length;
-      this.GetCartTotal();
-    }
-  )
+    });
+  this.cartService.cartTotalSubject.subscribe((total)=>{
+    this.cartTotal = total;
+  });
   }
   RemoveItem(prod : any){
    this.cartService.RemoveFromCart(prod);
+   if(this.cartCount === 0){this.ClearCart()}
   }
   IncreaseQuantity(prod : any){
     this.cartService.IncreaseQuantity(prod);
   }
   DecreaseQuantity(prod : any){
-    if(this.cartCount === 0){this.ClearCart()}
-    else{
       this.cartService.DecreaseQuantity(prod);
-    }
-  }
-  GetCartTotal(){
-   this.cartTotal = this.cartService.cartTotal;
   }
   ClearCart(){
     this.cartTotal = 0;

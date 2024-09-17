@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit{
 
   ngOnInit(){
 
-    this.prodService.productClicked.subscribe((prod)=>{
+    this.prodService.productClicked.subscribe((prod : Product)=>{
       this.selectedProd = prod;
     });
   }

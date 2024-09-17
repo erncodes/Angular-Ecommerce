@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-white" id="mainHeader">
     <div class="container-fluid px-5">
-      <a class="navbar-brand" href="#">Urban Strides</a>
+      <a class="navbar-brand" routerLink="Home">Urban Strides</a>
       <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" (click)="ToggleNav()">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,9 +19,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item cartContainer-li">
             <a class="nav-link" routerLink="Cart"><fa-icon [icon]="faShoppingBag"></fa-icon></a>
-            <span *ngIf="cartCount">{{cartCount}}</span>
+            <span class="cartCount" *ngIf="cartCount">{{cartCount}}</span>
           </li>
         </ul>
       </div>
