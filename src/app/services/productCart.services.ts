@@ -1,26 +1,25 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Product } from "../models/product";
+import { CartObject } from "../models/cartObject";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService{
 
-    cartItemsSubject : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-    cartProducts : Product[] = [];
+    cartItemsSubject : BehaviorSubject<CartObject[]> = new BehaviorSubject<CartObject[]>([]);
+    cartProducts : CartObject[] = [];
     cartTotal : any = 0;
+    promoCode5 : string = 'Urban5';
+    promoCode10 : string = 'Urban10';
     cartTotalSubject : BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
     GetCartProducts(){
         return this.cartItemsSubject.asObservable();
     }
 
-    AddToCart(prod : any){
-        this.cartProducts.
-        forEach((prod)=>{
-            Object.assign(prod,{quantity : 1});
-          });
+    AddToCart(prod : CartObject){
+        this.GetCartProducts();
         if(this.cartProducts.includes(prod)){
             this.IncreaseQuantity(prod);
             this.cartItemsSubject.next(this.cartProducts);
@@ -34,14 +33,14 @@ export class CartService{
         }
     }
 
-    RemoveFromCart(prod : any){
-        this.cartProducts.splice(prod.index,1);
-        this.cartTotal -= prod.price * prod.quantity;
+    RemoveFromCart(prod : any, index : number){
+        this.cartProducts.splice(index,1);
+        this.cartTotal -= (prod.price * prod.quantity);
         this.cartItemsSubject.next(this.cartProducts);
         this.cartTotalSubject.next(this.cartTotal);
 
     }
-    IncreaseQuantity(prod : any){
+    IncreaseQuantity(prod : CartObject){
         if(prod.quantity < prod.leftInStock)
             {
                 prod.quantity ++;
@@ -50,7 +49,7 @@ export class CartService{
                  this.cartTotalSubject.next(this.cartTotal);
             }
     }
-    DecreaseQuantity(prod : any){
+    DecreaseQuantity(prod : CartObject){
         if(prod.quantity >= 2){
             prod.quantity --;
             this.cartTotal -= prod.price;
@@ -58,5 +57,15 @@ export class CartService{
             this.cartTotalSubject.next(this.cartTotal);
         }
     }
+    ApplyPromoCode(input : any){
+        if(input.value === this.promoCode5){
+           this.cartTotal = this.cartTotal - ((this.cartTotal) * 0.05);
+         }
+         else if(input.value === this.promoCode10){
+           this.cartTotal = (10/this.cartTotal) * 100;
+         }
+         else
+         this.cartTotal = this.cartTotal;
+       }
  
 }

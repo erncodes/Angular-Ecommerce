@@ -16,7 +16,7 @@ export class ProductListComponent {
 
   MyMethod(prod : any){
     this.prodService.ViewProduct(prod);
-    this.router.navigate(['Details']);
+    this.router.navigate(['Home','Product-view']);
   }
 
 }

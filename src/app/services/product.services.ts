@@ -29,6 +29,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 15,
           discount: 0.15,
+          rating: 4,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 2,
@@ -41,6 +43,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 4,
           discount: 0.20,
+          rating: 4.5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 3,
@@ -53,6 +57,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 8,
           discount: 0,
+          rating: 3,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 4,
@@ -65,6 +71,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 3,
           discount: 0.10,
+          rating: 1,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 5,
@@ -75,8 +83,10 @@ export class ProductService{
           sizes: [7,8],
           colors: ["Black","Brown"],
           isInStock : true,
-          leftInStock: 4,
+          leftInStock: 5,
           discount: 0.20,
+          rating: 2,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 6,
@@ -89,6 +99,8 @@ export class ProductService{
           isInStock : false,
           leftInStock: 0,
           discount: 0,
+          rating: 4,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 7,
@@ -101,6 +113,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 7,
           discount: 0,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 8,
@@ -111,8 +125,10 @@ export class ProductService{
           sizes: [7,8],
           colors: ["Black","Brown"],
           isInStock : true,
-          leftInStock: 4,
+          leftInStock: 3.5,
           discount: 0.20,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 9,
@@ -125,6 +141,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 6,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 10,
@@ -137,6 +155,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 12,
           discount: 0.15,
+          rating: 3,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 11,
@@ -149,6 +169,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 4,
           discount: 0.20,
+          rating: 2,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 12,
@@ -161,6 +183,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 6,
           discount: 0.05,
+          rating: 4,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 13,
@@ -173,6 +197,8 @@ export class ProductService{
           isInStock : false,
           leftInStock: 0,
           discount: 0.10,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
       
         {
@@ -186,6 +212,8 @@ export class ProductService{
           isInStock : false,
           leftInStock: 0,
           discount: 0,
+          rating: 4,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 15,
@@ -198,6 +226,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 16,
           discount: 0.15,
+          rating: 3,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 16,
@@ -210,6 +240,8 @@ export class ProductService{
           isInStock : false,
           leftInStock: 0,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 17,
@@ -220,8 +252,10 @@ export class ProductService{
           sizes: [6,7,10],
           colors: ["Black","Brown"],
           isInStock : true,
-          leftInStock: 3,
+          leftInStock: 3.5,
           discount: 0.12,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 18,
@@ -234,6 +268,8 @@ export class ProductService{
           isInStock : false,
           leftInStock: 0,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 19,
@@ -246,6 +282,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 3,
           discount: 0.10,
+          rating: 4.5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 20,
@@ -258,6 +296,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 8,
           discount: 0.15,
+          rating: 3,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 21,
@@ -270,6 +310,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 14,
           discount: 0,
+          rating: 4.,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 22,
@@ -282,6 +324,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 3,
           discount: 0,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 23,
@@ -294,6 +338,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 5,
           discount: 0.15,
+          rating: 4,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 24,
@@ -306,6 +352,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 11,
           discount: 0,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 25,
@@ -318,6 +366,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 2,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 25,
@@ -330,6 +380,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 2,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 25,
@@ -342,6 +394,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 2,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
         {
           id: 25,
@@ -354,6 +408,8 @@ export class ProductService{
           isInStock : true,
           leftInStock: 2,
           discount: 0.15,
+          rating: 5,
+          dateAdded : new Date("2024/06/28")
         },
       ];
 

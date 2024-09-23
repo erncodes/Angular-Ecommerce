@@ -46,3 +46,7 @@
     padding: auto;
     font-size: 12px;
 }
+.nav-link{
+  color: black;
+  font-size: larger;
+}

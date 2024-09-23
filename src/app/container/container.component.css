@@ -9,5 +9,16 @@
     z-index: 5;
   }
 #router-outlet{
-    margin-top: 140px;
+    margin-top: 160px;
+}
+.path-display
+{
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    padding:  2px 30px;
+}
+.path-display p{
+    font-weight: bold;
+    margin: auto 0;
+    color: white;
 }

@@ -1,0 +1,23 @@
+.hero-container{
+    height: 250px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.image-bg{
+    background-image: url(./../../../../assets/images/bg-image.jpg);
+    background-position: center;
+    background-size: cover;
+    color: white;
+}
+.hero-text-cover{
+    background-color: #00000049;
+    height: 100%;
+    padding: 15px;
+}
+.hero-header{
+    text-align: end;
+    margin-top: auto;
+}
+.png-img{
+    width: 100%;
+}

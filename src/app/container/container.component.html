@@ -2,6 +2,10 @@
     <app-header></app-header>
 </div>
 <div id="router-outlet">
+    <app-hero *ngIf="router.url == '/' || router.url == '/Home'"></app-hero>
+    <div class="container path-display">
+        <xng-breadcrumb></xng-breadcrumb>
+    </div>
     <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
