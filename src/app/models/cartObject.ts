@@ -11,10 +11,12 @@ export class CartObject{
     isInStock : boolean;
     leftInStock: number;
     quantity: number = 1;
+    rating : number = 0;
+    dateAdded : Date;
 
     constructor(id : number, title : string ,description : string , size : number, 
           color : string,imageUrl : string, price : number, quantity : number,isInStock : boolean,leftInStock: number,
-          colorOptions: string[],sizeOptions: number[])
+          colorOptions: string[],sizeOptions: number[],rating : number,dateAdded : Date)
           {
             this.id = id;
             this.title = title;
@@ -28,5 +30,7 @@ export class CartObject{
             this.leftInStock = leftInStock;
             this.colorOptions = colorOptions;
             this.sizeOptions = sizeOptions;
+            this.rating = rating;
+            this.dateAdded = dateAdded;
            }
 }

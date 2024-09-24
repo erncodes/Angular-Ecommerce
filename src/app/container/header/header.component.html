@@ -1,3 +1,3 @@
 <top-header></top-header>
 <app-main-header></app-main-header>
-<bottom-header></bottom-header>
+<bottom-header *ngIf="router.url == '/' || router.url == '/Home'"></bottom-header>

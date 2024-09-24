@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-white py-3" id="mainHeader">
     <div class="container-fluid px-5">
       <a class="navbar-brand" routerLink="Home">Urban Strides</a>
-      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" (click)="ToggleNav()">
-        <span class="navbar-toggler-icon"></span>
+      <button class="btn-toggler d-lg-none" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" (click)="ToggleNav()">
+        <span class="toggler-icon"><i [class]="isToggleOpen? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x' " aria-hidden="true"></i></span>
       </button>
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <div [class]="isToggleOpen?'navbar-collapse offcanvas-collapse open':'navbar-collapse offcanvas-collapse'" id="navbarsExampleDefault">
         <div class="ms-auto">
           <app-search></app-search>
         </div>

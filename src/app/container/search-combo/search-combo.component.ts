@@ -8,4 +8,9 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 })
 export class SearchComboComponent {
   faMagnifyingGlass = faMagnifyingGlass;
+  searchMode : boolean = true;
+
+  ToggleSearch(){
+    this.searchMode = !this.searchMode
+  }
 }

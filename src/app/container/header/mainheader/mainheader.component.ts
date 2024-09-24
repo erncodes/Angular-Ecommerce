@@ -14,6 +14,7 @@ export class MainheaderComponent implements OnInit{
   cartService : CartService = inject(CartService);
   cartProducts : any[] = [];
   cartCount : number = 0;
+  isToggleOpen : boolean = false;
 
   ngOnInit(){
     this.cartService.GetCartProducts().subscribe((prodArray)=>{
@@ -24,9 +25,6 @@ export class MainheaderComponent implements OnInit{
   }
 
   ToggleNav(){
-    let canvasDiv = document.getElementById("navbarsExampleDefault"); 
-    if(canvasDiv != null){
-      canvasDiv.classList.toggle('open');
-    }
+    this.isToggleOpen = !this.isToggleOpen;
   }
 }

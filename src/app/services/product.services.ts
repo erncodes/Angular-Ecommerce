@@ -8,13 +8,44 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class ProductService{
 
    productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
+   filteredProdArray : any[] = [];
    
    ViewProduct(prod : any){
     this.productClicked.next(prod);
    }
+   GetProductsFiltered(filterText? : string){
+     if(filterText == '' || filterText == 'All'){
+       this.filteredProdArray = this.products;
+       this.filteredProdsSub.next(this.filteredProdArray);
+       return this.filteredProdArray;
+      }
+      if(filterText == 'Popular'){
+        this.filteredProdArray = this.products.filter(prod => prod.rating > 4);
+        this.filteredProdsSub.next(this.filteredProdArray);
+       return this.filteredProdArray;
+      }
+      if(filterText == 'NewArrivals'){
+        this.filteredProdArray = this.products.filter(prod => this.IsNewProduct(prod));
+        this.filteredProdsSub.next(this.filteredProdArray);
+       return this.filteredProdArray;
+      }
+       return this.products;
+   }
 
-    getAllproducts(){
-          return this.products;
+    GetProducts(){ 
+          return this.filteredProdsSub.asObservable();
+    }
+    IsNewProduct(prod : Product){
+      const date1 = prod.dateAdded;
+      const date2 = new Date();
+      const differenceInMilliseconds = date2.getTime() - date1.getTime();
+      const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+      if(differenceInDays >= 30){
+        return false;
+      }
+      else{
+        return true;
+      }
     }
 
     products : Product[]  = [
@@ -30,7 +61,7 @@ export class ProductService{
           leftInStock: 15,
           discount: 0.15,
           rating: 4,
-          dateAdded : new Date("2024/06/28")
+          dateAdded : new Date("2024/09/10")
         },
         {
           id: 2,
@@ -58,7 +89,7 @@ export class ProductService{
           leftInStock: 8,
           discount: 0,
           rating: 3,
-          dateAdded : new Date("2024/06/28")
+          dateAdded : new Date("2024/08/28")
         },
         {
           id: 4,
@@ -100,7 +131,7 @@ export class ProductService{
           leftInStock: 0,
           discount: 0,
           rating: 4,
-          dateAdded : new Date("2024/06/28")
+          dateAdded : new Date("2024/09/08")
         },
         {
           id: 7,
@@ -128,7 +159,7 @@ export class ProductService{
           leftInStock: 3.5,
           discount: 0.20,
           rating: 5,
-          dateAdded : new Date("2024/06/28")
+          dateAdded : new Date("2024/09/18")
         },
         {
           id: 9,
@@ -412,6 +443,5 @@ export class ProductService{
           dateAdded : new Date("2024/06/28")
         },
       ];
-
-
+   filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
 }

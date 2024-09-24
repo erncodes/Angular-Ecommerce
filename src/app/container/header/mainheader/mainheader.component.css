@@ -2,7 +2,7 @@
 @media (max-width: 991.98px) {
 .offcanvas-collapse {
     position: fixed;
-    top: 0px; /* Height of navbar */
+    top: 150px; /* Height of navbar */
     bottom: 0;
     left: 100%;
     width: 100%;
@@ -19,7 +19,14 @@
     transform: translateX(-100%);
   }
 }
-
+.btn-toggler{
+  outline: none;
+  border: none;
+  background-color: white;
+}
+.fa-times{
+  color: red;
+}
 
 .navbar-brand{
   font-family: "Satisfy", cursive;
@@ -48,5 +55,5 @@
 }
 .nav-link{
   color: black;
-  font-size: larger;
+  font-size: large;
 }

@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-center align-content-center bg-white" id="container">
     <ul>
         <li>
-            <a class="mx-2">Popular |</a>
+            <a class="mx-2" (click)="FilterProds('All')">All |</a>
         </li>
         <li>
-            <a class="mx-2">Brands |</a>
+            <a class="mx-2" (click)="FilterProds('Popular')">Popular |</a>
         </li>
         <li>
-            <a class="mx-2">New Arrivals</a>
+            <a class="mx-2" (click)="FilterProds('NewArrivals')">New Arrivals</a>
         </li>
     </ul>
 </div>

@@ -1,3 +1,8 @@
-<button class="btn button-31">
+<button class="btn button-31" (click)="ToggleSearch()">
     <h5 class="fw-bold"><fa-icon [icon]="faMagnifyingGlass"></fa-icon>Search</h5>
 </button>
+<div [class]="searchMode? 'search-outlet' : 'search-outlet active'">
+    <h3>Halo</h3>
+    <h3>Halo</h3>
+    <h3>Halo</h3>
+</div>

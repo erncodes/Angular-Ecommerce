@@ -50,3 +50,22 @@
 .button-31:focus {
   opacity: .75;
 }
+.search-outlet{
+  position: absolute;
+  top: 0px; /* Height of navbar */
+  left: 100%;
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+  transition: transform .5s ease-in-out, filter .5s ease-in-out;
+  z-index: 5;
+  height: 90vh;
+  border: 1px solid black;
+  filter: alpha(opacity=0);
+}
+.search-outlet.active{
+  transform: translateX(-100%);
+  filter: alpha(opacity=100);
+}
