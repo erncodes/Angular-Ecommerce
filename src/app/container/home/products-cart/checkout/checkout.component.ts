@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CartService } from 'src/app/services/productCart.services';
 
 @Component({
@@ -37,5 +38,8 @@ export class CheckoutComponent implements OnInit {
      }
      else
      this.cartTotal = this.cartTotal;
+   }
+   CreateOrder(ngForm : NgForm){
+    console.log(ngForm.value);
    }
 }

@@ -81,4 +81,9 @@ select{
     width: 100%;
     background-color: rgb(247, 247, 247);
 }
+.btn{
+    background-color: black;
+    color: white;
+    border-bottom: 4px solid #D1FF65;
+}
 

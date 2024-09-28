@@ -1,8 +1,43 @@
 <button class="btn button-31" (click)="ToggleSearch()">
     <h5 class="fw-bold"><fa-icon [icon]="faMagnifyingGlass"></fa-icon>Search</h5>
 </button>
-<div [class]="searchMode? 'search-outlet' : 'search-outlet active'">
-    <h3>Halo</h3>
-    <h3>Halo</h3>
-    <h3>Halo</h3>
-</div>
+<div [class]="searchMode? 'search-outlet active' : 'search-outlet'">
+    <div class="search-container p-5">
+                <div class="row">
+                    <div class="form-floating col-10 mb-3">
+                        <input type="email" class="form-control" id="floatingInput" [(ngModel)]="SearchText" (input)="SearchProduct(SearchText)">
+                        <label for="floatingInput">Search product. . .</label>
+                      </div>
+                      <div class="col-2 times-container">
+                          <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
+                      </div>
+                    <div class="col-4 search-links">
+                        <a href="" class="nav-link">New Arrivals</a>
+                        <a href="" class="nav-link">Brands</a>
+                        <a href="" class="nav-link">Brands</a>
+                        <a href="" class="nav-link">Brands</a>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="fw-bold">Popular</h4>
+                        <div class="row">
+                            <div class="col-3" *ngFor="let item of products" (click)="ViewProduct(item)">
+                                <div class="card flex-grow-1">
+                                    <img [src]="item.image" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{item.title}}</h5>
+                                      <div class="price-tag">
+                                        <p class="fw-bold">{{item.price | currency : 'R'}}</p>
+                                      </div>
+                                      <ng-template #stockinfo>
+                                        <div>
+                                          <p class="fw-bold text-danger">Out Of Stock</p>
+                                        </div>
+                                      </ng-template>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>

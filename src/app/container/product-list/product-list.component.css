@@ -13,14 +13,20 @@
 }
 .price-tag{
     position: absolute;
-    top: 65%;
+    top: 60%;
     right: 0;
     background-color: #000000;
-    color: white;
-    padding: 2.5px 5px;
+    color: #D1FF65;
+    padding: 0px 5px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .price-tag p{
     margin: auto 0;
+}
+.discounted-price{
+    text-decoration: line-through;
+    text-decoration-color: #c114149c;
+    color: rgb(0, 0, 0);
 }
 .discount-div{
     position: absolute;
@@ -40,6 +46,9 @@
     right: 3%;
     padding: 2.5px 5px;
     transition: all 0.5s ease-in-out;
+}
+.fa-star{
+    color: #D1FF65;
 }
 .sizes{
     border: 0.5px solid black;

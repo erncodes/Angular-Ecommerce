@@ -35,6 +35,12 @@ export class ProductService{
     GetProducts(){ 
           return this.filteredProdsSub.asObservable();
     }
+    Searchproducts(text: string){
+      this.filteredProdArray = this.products.filter( prod => prod.title.toLowerCase().includes(text.toLocaleLowerCase()));
+      this.productSearch.next(this.filteredProdArray);
+      return this.filteredProdArray;
+    }
+ 
     IsNewProduct(prod : Product){
       const date1 = prod.dateAdded;
       const date2 = new Date();
@@ -46,6 +52,14 @@ export class ProductService{
       else{
         return true;
       }
+    }
+    GetSimilarProducts(product : Product){
+      let returnProducts = this.products.filter( prod => prod.rating === product.rating && prod.id != product.id);
+      if(returnProducts.length > 4){
+        return returnProducts.slice(0,4);
+      }
+      else
+      return returnProducts;
     }
 
     products : Product[]  = [
@@ -444,4 +458,6 @@ export class ProductService{
         },
       ];
    filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
+   productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
+
 }

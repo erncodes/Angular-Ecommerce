@@ -9,7 +9,7 @@
     z-index: 5;
   }
 .router-outlet{
-    margin-top: 160px;
+    margin-top: 170px;
 }
 .router-outlet.other{
     margin-top: 140px;

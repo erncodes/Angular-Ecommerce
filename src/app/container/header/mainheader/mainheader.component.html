@@ -1,33 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-white py-3" id="mainHeader">
     <div class="container-fluid px-5">
-      <a class="navbar-brand" routerLink="Home">Urban Strides</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="Home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+
       <button class="btn-toggler d-lg-none" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" (click)="ToggleNav()">
         <span class="toggler-icon"><i [class]="isToggleOpen? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x' " aria-hidden="true"></i></span>
       </button>
       <div [class]="isToggleOpen?'navbar-collapse offcanvas-collapse open':'navbar-collapse offcanvas-collapse'" id="navbarsExampleDefault">
-        <div class="ms-auto">
-          <app-search></app-search>
+      
+        <div class="brand-logo ms-auto">
+          <img src="./../../../../assets/images/Logo.jpg" class="logo-img"/>
+          <div class="brand-container">
+            <a class="navbar-brand" routerLink="Home">Urban Strides</a>
+          </div>
         </div>
-       
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="Home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
+        
+        <ul class="navbar-nav ms-auto me-2">
           <li class="nav-item cartContainer-li">
             <a class="nav-link" routerLink="Home/Cart"><i class="fa fa-shopping-bag"></i></a>
             <span class="cartCount" *ngIf="cartCount">{{cartCount}}</span>
           </li>
           <li class="nav-item cartContainer-li">
-            <a class="nav-link" routerLink="Cart"> <i class="fa fa-heart"></i> </a>
-            <span class="cartCount" *ngIf="cartCount">{{cartCount}}</span>
+            <a class="nav-link" routerLink="Cart"> <i class="fa fa-heart-o"></i> </a>
+            <span class="cartCount" *ngIf="">{{cartCount}}</span>
           </li>
         </ul>
+        <div class="">
+          <app-search></app-search>
+        </div>
       </div>
     </div>
   </nav>

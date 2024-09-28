@@ -1,9 +1,9 @@
 <div id="mainHeader">
     <app-header></app-header>
 </div>
-<div [class]="router.url == '/' || router.url == '/Home'? 'router-outlet':'router-outlet other'">
+<div [class]="router.url == '/' || router.url == '/Home' ? 'router-outlet':'router-outlet other'">
     <app-hero *ngIf="router.url == '/' || router.url == '/Home'"></app-hero>
-    <div *ngIf="router.url != '/'" class="container path-display">
+    <div *ngIf="router.url != '/' " class="container path-display">
         <xng-breadcrumb></xng-breadcrumb>
     </div>
     <router-outlet></router-outlet>

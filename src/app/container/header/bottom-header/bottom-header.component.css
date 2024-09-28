@@ -8,13 +8,13 @@ li{
     list-style: none;
 }
 a{
-    font-weight: 500;
+    font-weight: bold;
     text-decoration: none;
     cursor: pointer;
-    color: black;
+    color: #ffffff;
+
 }
 #container{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    padding: 5px 0;
     margin-bottom: 15px;
+    background-color: #000000;
 }
