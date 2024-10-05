@@ -33,7 +33,7 @@ export class ProductDetailsComponent implements OnInit{
 
   ngOnInit(){
     this.prodService.productClicked.subscribe((prod : Product)=>{
-      let cartObj = new CartObject( prod.id, prod.title, prod.description, this.selectedSize , this.selectedColor, prod.image, prod.price,1,
+      let cartObj = new CartObject( prod.id, prod.title, prod.description, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
         prod.isInStock,prod.leftInStock,prod.colors,prod.sizes,prod.rating,prod.dateAdded);
       this.selectedProd = cartObj;
       this.similarProducts = this.prodService.GetSimilarProducts(prod);
@@ -48,6 +48,9 @@ export class ProductDetailsComponent implements OnInit{
   ViewProduct(similarProd : Product){
     this.prodService.ViewProduct(similarProd);
     this.router.navigate(['Home','Product-view']);
+  }
+  PostProducts(){
+    this.prodService.PostProductsToApi();
   }
  
 }

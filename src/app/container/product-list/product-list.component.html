@@ -1,10 +1,9 @@
 <div class="container">
-  <h3 class="fw-bold mb-3 text-black">Popular Kicks</h3>
-    <div class="row mx-auto">
-        <div class="col-lg-3 mb-2" *ngFor="let item of products" (click)="MyMethod(item)">
-            <div class="card flex-grow-1">
-                <img [src]="item.image" class="card-img-top" alt="">
-                <div class="heart-icon d-flex flex-row">
+  <header class="fw-bold mb-3 text-black fs-4">Popular Kicks</header>
+        <div class="row gap-2 justify-content-center">
+            <div class="card col-lg-3 col-md-4 col-5" *ngFor="let item of products" (click)="MyMethod(item)">
+                <img [src]="item.imageUrl" class="card-img-top" alt="">
+                <div class="start-icons d-flex flex-row">
                     <i [class]="item.rating > 0 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 1 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 2 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
@@ -12,9 +11,8 @@
                     <i [class]="item.rating > 4 ? 'fa-solid fa-star me-3' : 'fa-regular fa-star me-3'" ></i>
                   <i class="fa fa-heart-o text-black"></i>
                 </div>
-                <div class="card-body">
-                  <p *ngIf="isNewProduct(item)">NEW NEW NEW</p>
-                  <h5 class="card-title">{{item.title}}</h5>
+                <div>
+                  <header class="card-title fs-5 my-2">{{item.title}}</header>
                   <div class="discount-div" *ngIf="item.discount && item.isInStock">
                     <p class="fw-bold">{{ item.discount | percent  }} OFF</p>
                   </div>
@@ -24,7 +22,7 @@
                   </div>
                   <ng-container *ngIf="item.isInStock, else stockinfo">
                     <div>
-                      <p class="fw-bold text-secondary">Available In Stock</p>
+                      <p class="fw-bold text-secondary">In Stock</p>
                     </div>
                   </ng-container>
                   <ng-template #stockinfo>
@@ -39,6 +37,5 @@
                   </div>
                 </div>
               </div>
-        </div>
     </div>
 </div>

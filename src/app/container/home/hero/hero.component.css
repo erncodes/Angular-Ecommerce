@@ -1,59 +1,71 @@
-.hero-container{
-    height: 400px;
-    width: 100%;
-    margin-bottom: 15px;
-}
-.image-bg{
-    background-image: url(./../../../../assets/images/portrait-urban-bearded-male-dressed-black-stylish-winter-jacket.jpg);
-    background-position: bottom;
-    background-size: cover;
-    color: white;
-}
-.hero-text-cover{
-    background-color: #00000049;
-    height: 100%;
-    padding: 15px;
-}
-.hero-header{
-    text-align: end;
-}
-.banner{
-    justify-content: center;
-    margin-bottom: 10px;
-}
-.sale-banner{
-    background-color: #ffffff;
-    transform: skew(45deg);
-    position: relative;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.15) -1.95px -1.95px 2.6px;
-}
-.sale-banner span{
-    color: red;
-}
-.sale-banner-snd{
-    background-color: rgb(0, 0, 0);
-    transform: skew(45deg);
-    position: relative;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.sale-banner-snd p{
-    transform: skew(-45deg);
-    font-weight: bold;
-    margin: auto 0px;
-    font-size: 30px;
-    color: #ffffff; 
-}
-.sale-banner p{
-    transform: skew(-45deg);
-    font-weight: bold;
-    margin: auto 0px;
-    font-size: 30px;
-    color: rgb(0, 0, 0);
+@media(min-width:320px){
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .hero-container{
+        width: 100%;
+        margin-bottom: 0.9rem;
+        font-size: 0.7rem;
+        justify-content: center;
+    }
+    .image-bg{
+        background-image: url(./../../../../assets/images/portrait-urban-bearded-male-dressed-black-stylish-winter-jacket.jpg);
+        background-position: bottom;
+        background-size: cover;
+        color: white;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    .hero-text-cover{
+        background-color: #00000049;
+        height: 100%;
+        padding: 0.9rem;
+    }
+    .hero-text-cover header{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .banner{
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 0.6rem;
+    }
+    .sale-banner{
+        background-color: #ffffff;
+        transform: skew(45deg);
+        position: relative;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.15) -1.95px -1.95px 2.6px;
+    }
+    .sale-banner span{
+        color: red;
+    }
+    .sale-banner-snd{
+        background-color: rgb(0, 0, 0);
+        transform: skew(45deg);
+        position: relative;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sale-banner-snd p{
+        transform: skew(-45deg);
+        font-weight: bold;
+        margin: auto 0;
+        font-size: 0.9rem;
+        color: #ffffff; 
+    }
+    .sale-banner p{
+        transform: skew(-45deg);
+        font-weight: bold;
+        margin: auto 0;
+        font-size: 0.9rem;
+        color: rgb(0, 0, 0);
+    }
 }

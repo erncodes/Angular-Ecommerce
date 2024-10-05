@@ -1,78 +1,88 @@
-.card{
-    position: relative;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    cursor: pointer;
-    padding: 7.5px;
-    overflow: hidden;
-}
-.card-img-top{
-    transition: transform 0.5s ease-in-out;
-}
-.card:hover .card-img-top{
-    transform: scale(1.05);
-}
-.price-tag{
-    position: absolute;
-    top: 60%;
-    right: 0;
-    background-color: #000000;
-    color: #D1FF65;
-    padding: 0px 5px 0;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.price-tag p{
-    margin: auto 0;
-}
-.discounted-price{
-    text-decoration: line-through;
-    text-decoration-color: #c114149c;
-    color: rgb(0, 0, 0);
-}
-.discount-div{
-    position: absolute;
-    top: 12%;
-    right: 0;
-    color: #ffffff;
-    background-color: #000000;
-    padding: 2.5px 5px;
-}
-.discount-div p{
-    margin: auto 0;
-}
-.heart-icon{
-    position: absolute;
-    font-size: larger;
-    top: 3%;
-    right: 3%;
-    padding: 2.5px 5px;
-    transition: all 0.5s ease-in-out;
-}
-.fa-star{
-    color: #D1FF65;
-}
-.sizes{
-    border: 0.5px solid black;
-    margin: 5px;
-    text-align: center;
-    padding: 8px 0;
-    transition: all 0.5s ease-in-out;
-}
-.sizes p{
-    margin: auto;
-}
-.size-div{
-    background-color: #ffffff;
-    position: absolute;
-    bottom: -15%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease-in-out;
-}
-.card:hover .size-div{
-    transform: translateY(-150%);
-    width: 100%;
-    z-index: 6;
+@media (min-width:320px){
+    .card{
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        cursor: pointer;
+        padding: 2.5px;
+        overflow: hidden;
+        height: 280px;
+    }
+    .card-img-top{
+        transition: transform 0.5s ease-in-out;
+    }
+    .card:hover .card-img-top{
+        transform: scale(1.05);
+    }
+    .price-tag{
+        position: absolute;
+        bottom: 2%;
+        right: 0;
+        background-color: #000000;
+        color: #D1FF65;
+        padding: 0px 5px 0;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .price-tag p{
+        margin: auto 0;
+        font-size: small;
+    }
+    .discounted-price{
+        text-decoration: line-through;
+        text-decoration-color: #c114149c;
+        color: rgb(0, 0, 0);
+        font-size: small;
+    }
+    .discount-div{
+        position: absolute;
+        top: 5%;
+        right: 0;
+        color: #ffffff;
+        background-color: #000000;
+        padding: 2.5px 5px;
+    }
+    .discount-div p{
+        margin: auto 0;
+        font-size: small;
+    }
+    header{
+        line-height: 17px;
+    }
+    .star-icons{
+        position: absolute;
+        font-size: smaller;
+        top: 0;
+        right: 1%;
+        padding: 0.5px 5px;
+        transition: all 0.5s ease-in-out;
+    }
+    .fa-star{
+        color: #000000;
+    }
+    .sizes{
+        border: 0.5px solid black;
+        margin: 5px;
+        text-align: center;
+        padding: 8px 0;
+        transition: all 0.5s ease-in-out;
+    }
+    .sizes p{
+        margin: auto;
+        font-size: small;
+    }
+    .size-div{
+        background-color: #ffffff;
+        position: absolute;
+        bottom: -15%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s ease-in-out;
+    }
+    .card:hover .size-div{
+        transform: translateY(-150%);
+        width: 100%;
+        z-index: 6;
+    }
 }

@@ -16,7 +16,8 @@
           <li class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let prod of cartProducts">
             <div>
               <h6 class="my-0">{{prod.title}}</h6>
-              <small class="text-muted">{{prod.quantity}}</small>
+              <small class="text-muted"> Qty :{{prod.quantity}}</small>
+              <small class="text-muted"> Color :{{prod.color}}</small>
             </div>
             <span class="text-muted">{{prod.total | currency : 'R'}}</span>
           </li>

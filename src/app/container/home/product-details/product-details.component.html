@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <span class="h5">R {{ selectedProd.price }}</span>
+              <span class="h5">{{ selectedProd.price | currency : 'R' }}</span>
             </div>
             <p>
               {{selectedProd.description}}
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="notify-btn-container" *ngIf="!selectedProd.isInStock">
-              <button type="button" class="btn">Notify Me</button>
+              <button type="button" class="btn" (click)="PostProducts()">Notify Me</button>
             </div>
           </div>
         </main>
@@ -80,7 +80,7 @@
                 <h5 class="card-title">Similar items</h5>
                 <div class="d-flex mb-3" *ngFor="let similarProd of similarProducts" (click)="ViewProduct(similarProd)">
                   <a class="me-3">
-                    <img [src]="similarProd.image" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                    <img [src]="similarProd.imageUrl" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                   </a>
                   <div class="info">
                     <a class="nav-link mb-1">

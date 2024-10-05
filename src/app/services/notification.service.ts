@@ -9,8 +9,8 @@ export class NotificationService {
   snackBar : MatSnackBar = inject(MatSnackBar);
 
   ShowNotification(displayMessage : string){
-    const horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-    const verticalPosition: MatSnackBarVerticalPosition = 'top';
+    const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    const verticalPosition: MatSnackBarVerticalPosition = 'bottom';
     this.snackBar.openFromComponent(SnackbarComponent,
       {
         duration :2000,  

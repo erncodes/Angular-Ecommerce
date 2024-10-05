@@ -4,7 +4,7 @@
       description: string;
       sizes: number[];
       colors: string[];
-      image: string;
+      imageUrl: string;
       isInStock: boolean;
       leftInStock: number;
       price: number;
@@ -13,7 +13,7 @@
       dateAdded : Date;
 
       constructor(id : number, title : string ,description : string , sizes : number[], 
-            colors : string[],image : string,isInStock : boolean,
+            colors : string[],imageUrl : string,isInStock : boolean,
             leftInStock : number, price : number, discount : number,rating : number,dateAdded : Date)
             {
             this.id = id;
@@ -21,7 +21,7 @@
             this.description = description;
             this.sizes = sizes;
             this.colors = colors;
-            this.image = image;
+            this.imageUrl = imageUrl;
             this.isInStock = isInStock;
             this.leftInStock = leftInStock;
             this.price = price;

@@ -24,6 +24,7 @@ import { ProductsCartComponent } from './container/home/products-cart/products-c
 import { SearchComboComponent } from './container/search-combo/search-combo.component';
 import { TopHeaderComponent } from './container/header/top-header/top-header.component';
 import { SnackbarComponent } from './container/home/snackbar/snackbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SnackbarComponent } from './container/home/snackbar/snackbar.component'
     RoutingModule,
     BreadcrumbModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
