@@ -1,6 +1,7 @@
-.offcanvas-search {
+@media(min-width : 320px){
+  .offcanvas-search {
     position: fixed;
-    top: 100px; /* Height of navbar */
+    top: 100px;
     bottom: 0;
     left: 100%;
     width: 100%;
@@ -102,4 +103,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   height: 300px;
+}
+.card-title {
+  font-size: 15px;
+}
 }

@@ -27,17 +27,17 @@
           </h4>
         </div>
         <ul class="navbar-nav ms-auto me-2">
-          <li class="nav-item cartContainer-li">
+          <li class="nav-item cartContainer-li" (click)="ToggleNav()">
             <a class="nav-link" routerLink="Home/Cart"><i class="fa fa-shopping-bag"></i></a>
             <span class="cartCount" *ngIf="cartCount">{{cartCount}}</span>
           </li>
-          <li class="nav-item cartContainer-li">
+          <li class="nav-item cartContainer-li" (click)="ToggleNav()">
             <a class="nav-link" routerLink="Cart"> <i class="fa fa-heart-o"></i></a>
             <span class="cartCount" *ngIf="">{{cartCount}}</span>
           </li>
         </ul>
         <ul class="navbar-nav navs">
-          <li class="nav-item">
+          <li class="nav-item" (click)="ToggleNav()">
             <a class="nav-link" routerLink="Home">Home</a>
           </li>
           <li class="nav-item">
