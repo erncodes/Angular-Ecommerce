@@ -12,8 +12,9 @@ export class ProductListComponent {
   prodService = inject(ProductService);
   products : Product[] | undefined  = [];
   router : Router = inject(Router);
+  headerText : string = 'Popular Kicks'
 
-  MyMethod(prod : any){
+  ViewProduct(prod : any){
     this.prodService.ViewProduct(prod);
     this.router.navigate(['Home','Product-view']);
   }
@@ -21,6 +22,10 @@ export class ProductListComponent {
     this.prodService.GetProducts().subscribe((prodArray)=>{
       this.products = prodArray;
     })
+    this.prodService.textSubject.subscribe((text)=>{
+      this.headerText = text;
+    })
+
   }
 
   isNewProduct(prod:Product){

@@ -1,15 +1,18 @@
 <div class="container">
-  <header class="fw-bold mb-3 text-black fs-4">Popular Kicks</header>
-        <div class="row gap-2 justify-content-center">
-            <div class="card col-lg-3 col-md-4 col-5" *ngFor="let item of products" (click)="MyMethod(item)">
+  <header class="fw-bold mb-3 text-black fs-4">{{headerText}}</header>
+  <div class="row ms-3 fw-bold">[{{products?.length}}] products</div>
+  <hr>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-5 p-1" *ngFor="let item of products" (click)="ViewProduct(item)">
+            <div class="card">
                 <img [src]="item.imageUrl" class="card-img-top" alt="">
-                <div class="start-icons d-flex flex-row">
+                <div class="star-icons d-flex flex-row">
                     <i [class]="item.rating > 0 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 1 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 2 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 3 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
                     <i [class]="item.rating > 4 ? 'fa-solid fa-star me-3' : 'fa-regular fa-star me-3'" ></i>
-                  <i class="fa fa-heart-o text-black"></i>
+                  <!--<i class="fa fa-heart-o text-black"></i>-->
                 </div>
                 <div>
                   <header class="card-title fs-5 my-2">{{item.title}}</header>
@@ -37,5 +40,6 @@
                   </div>
                 </div>
               </div>
+          </div>
     </div>
 </div>

@@ -1,36 +1,15 @@
 @media(min-width:320px){
-    .card{
+    .cart{
         margin: auto;
         max-width: 950px;
         width: 100%;
-    }
-    .cart{
-        background-color: #fff;
-        padding: 4vh 5vh;
-    }
-    .img-container{
-        position: relative;
-    }
-    .img-fluid{
-        position: absolute;
-        left: -30%;
-        top: 0;
+        padding: 15px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
     .summary{
         background-color: #000000;
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
         padding: 10px;
         color: rgb(255, 255, 255);
-    }
-    .summary .col-2{
-        padding: 0;
-    }
-    .summary .col-10
-    {
-        padding: 0;
-    }.row{
-        margin: 0;
     }
     .title b{
         font-size: 1.5rem;
@@ -69,6 +48,9 @@
     a:hover{
         color: black;
         text-decoration: none;
+    }
+    .quantity{
+        margin: 0 5px;
     }
     .quantity-btn{
         font-weight: bold;

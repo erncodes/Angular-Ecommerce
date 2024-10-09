@@ -7,42 +7,47 @@ import { HttpClient } from "@angular/common/http";
     providedIn : 'root'
 })
 export class ProductService{
-
    productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
    filteredProdArray : any[] = [];
    httpClient : HttpClient = inject(HttpClient);
+   textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('Popular');
    
    ViewProduct(prod : any){
     this.productClicked.next(prod);
    }
+   //Filter products based on filter text,return all if no text passed
    GetProductsFiltered(filterText? : string){
      if(filterText == '' || filterText == 'All'){
        this.filteredProdArray = this.products;
        this.filteredProdsSub.next(this.filteredProdArray);
+       this.textSubject.next('All Products');
        return this.filteredProdArray;
       }
       if(filterText == 'Popular'){
         this.filteredProdArray = this.products.filter(prod => prod.rating > 4);
         this.filteredProdsSub.next(this.filteredProdArray);
+        this.textSubject.next('Popular Kicks');
        return this.filteredProdArray;
       }
       if(filterText == 'NewArrivals'){
         this.filteredProdArray = this.products.filter(prod => this.IsNewProduct(prod));
         this.filteredProdsSub.next(this.filteredProdArray);
+        this.textSubject.next('New Kicks This Month');
        return this.filteredProdArray;
       }
        return this.products;
    }
-
+   //Get all products
     GetProducts(){ 
           return this.filteredProdsSub.asObservable();
     }
+    //Search products based on title
     Searchproducts(text: string){
       this.filteredProdArray = this.products.filter( prod => prod.title.toLowerCase().includes(text.toLocaleLowerCase()));
       this.productSearch.next(this.filteredProdArray);
       return this.filteredProdArray;
     }
- 
+    //Check if the product was added in the last 30 days
     IsNewProduct(prod : Product){
       const date1 = prod.dateAdded;
       const date2 = new Date();
@@ -57,8 +62,8 @@ export class ProductService{
     }
     GetSimilarProducts(product : Product){
       let returnProducts = this.products.filter( prod => (prod.rating === product.rating || prod.title.includes(product.title)) && prod.id != product.id);
-      if(returnProducts.length > 4){
-        return returnProducts.slice(0,4);
+      if(returnProducts.length > 3){
+        return returnProducts.slice(0,3);
       }
       else
       return returnProducts;
@@ -464,6 +469,7 @@ export class ProductService{
           dateAdded : new Date("2024/06/28")
         },
       ];
+
    filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
    productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
 

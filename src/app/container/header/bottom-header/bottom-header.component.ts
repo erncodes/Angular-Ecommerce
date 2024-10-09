@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product.services';
 
 @Component({
@@ -8,8 +9,14 @@ import { ProductService } from 'src/app/services/product.services';
 })
 export class BottomHeaderComponent {
   prodService : ProductService = inject(ProductService);
-  
-  FilterProds(filterText :string){
-    this.prodService.GetProductsFiltered(filterText);
+  public filterText : string = '';
+  ngOnInit(){
+    this.filterText = 'Popular';
+    this.prodService.GetProductsFiltered('Popular');
+  }
+
+  FilterProds(text :string){
+    this.filterText = text;
+    this.prodService.GetProductsFiltered(text);
   }
 }

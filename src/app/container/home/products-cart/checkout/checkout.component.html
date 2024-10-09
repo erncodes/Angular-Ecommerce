@@ -1,124 +1,126 @@
 <div class="container">
   <form #ngForm ="ngForm" (ngSubmit)="CreateOrder(ngForm)">
-    <div class="row g-5">
-      <div class="col-md-5 col-lg-4 order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-black">Cart Summary</span>
-          <span class="badge bg-dark rounded-pill">{{cartProducts.length}}</span>
-        </h4>
-        <label for="delivery" class="form-label">SHIPPING</label>
-        <select [(ngModel)]="selectedDelivery" id="delivery" ngModel class="form-select" name="delivery">
-            <option value="">Choose Delivery. . .</option>
-            <option class="text-muted" [value]="standardShipping_Fee">Standard-Delivery {{standardShipping_Fee | currency : 'R'}}</option>
-            <option class="text-muted" [value]="fastShipping_Fee">Fast-Delivery {{fastShipping_Fee | currency : 'R'}}</option>
-        </select>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let prod of cartProducts">
-            <div>
-              <h6 class="my-0">{{prod.title}}</h6>
-              <small class="text-muted"> Qty :{{prod.quantity}}</small>
-              <small class="text-muted"> Color :{{prod.color}}</small>
+    <div class="container p-3">
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-black">Cart Summary</span>
+            <span class="badge bg-dark rounded-pill">{{cartProducts.length}}</span>
+          </h4>
+          <label for="delivery" class="form-label">SHIPPING</label>
+          <select [(ngModel)]="selectedDelivery" id="delivery" ngModel class="form-select" name="delivery">
+              <option value="">Choose Delivery. . .</option>
+              <option class="text-muted" [value]="standardShipping_Fee">Standard-Delivery {{standardShipping_Fee | currency : 'R'}}</option>
+              <option class="text-muted" [value]="fastShipping_Fee">Fast-Delivery {{fastShipping_Fee | currency : 'R'}}</option>
+          </select>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let prod of cartProducts">
+              <div>
+                <h6 class="my-0">{{prod.title}}</h6>
+                <small class="text-muted"> Qty :{{prod.quantity}}</small>
+                <small class="text-muted"> Color :{{prod.color}}</small>
+              </div>
+              <span class="text-muted">{{prod.total | currency : 'R'}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small *ngIf="IsPromoApplied">{{promoCode}}</small>
+              </div>
+              <span class="text-success" *ngIf="IsPromoApplied">−{{promoDiscount | currency : 'R'}}</span>
+            </li> 
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (ZAR)</span>
+              <strong>{{cartTotal | currency : 'R'}}</strong>
+            </li>
+          </ul>
+  
+          <div class="card p-2" *ngIf="!IsPromoApplied">
+            <div class="input-group">
+              <input type="text" class="form-control" [value]="promoCode" placeholder="Promo code" #promoInput>
+              <button type="button" class="btn btn-secondary" (click)="ApplyPromoCode(promoInput,selectedDelivery)">Redeem</button>
             </div>
-            <span class="text-muted">{{prod.total | currency : 'R'}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small *ngIf="IsPromoApplied">{{promoCode}}</small>
-            </div>
-            <span class="text-success" *ngIf="IsPromoApplied">−{{promoDiscount | currency : 'R'}}</span>
-          </li> 
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (ZAR)</span>
-            <strong>{{cartTotal | currency : 'R'}}</strong>
-          </li>
-        </ul>
-
-        <div class="card p-2" *ngIf="!IsPromoApplied">
-          <div class="input-group">
-            <input type="text" class="form-control" [value]="promoCode" placeholder="Promo code" #promoInput>
-            <button type="button" class="btn btn-secondary" (click)="ApplyPromoCode(promoInput,selectedDelivery)">Redeem</button>
+            <button class="btn my-4" type="submit">Proceed To Pay</button>
           </div>
-          <button class="btn my-4" type="submit">Proceed To Pay</button>
+          <button type="submit" class="btn my-4" *ngIf="IsPromoApplied">Proceed To Pay</button>
         </div>
-        <button type="submit" class="btn my-4" *ngIf="IsPromoApplied">Proceed To Pay</button>
-      </div>
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Billing address</h4>
-        <div class="needs-validation">
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" name="firstName" required ngModel>
-              <div class="invalid-feedback">
-                Valid first name is required.
+        <div class="col-md-7 col-lg-8 order-bill-address">
+          <h4 class="mb-3">Billing address</h4>
+          <div class="needs-validation">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" name="firstName" required ngModel>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
               </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" name="lastName" required ngModel>
-              <div class="invalid-feedback">
-                Valid last name is required.
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" name="lastName" required ngModel>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
               </div>
-            </div>
-
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" ngModel email required>
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
+  
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" ngModel email required>
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
               </div>
-            </div>
-
-            <div class="col-12">
-              <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required name="address" ngModel>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
+  
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required name="address" ngModel>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
               </div>
-            </div>
-
-            <div class="col-12">
-              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" ngModel name="address2">
-            </div>
-
-            <div class="col-md-5">
-              <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required ngModel name="country">
-                <option value="">Choose...</option>
-                <option>South Africa</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
+  
+              <div class="col-12">
+                <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" ngModel name="address2">
               </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="state" class="form-label">State/Province</label>
-              <select class="form-select" id="state" required ngModel name="state">
-                <option value="">Choose...</option>
-                <option>Eastern Cape</option>
-                <option>Free State</option>
-                <option>Gauteng</option>
-                <option>KwaZulu Natal</option>
-                <option>Limpopo</option>
-                <option>Mpumalanga</option>
-                <option>North West</option>
-                <option>Northen Cape</option>
-                <option>Western Cape</option>
-              </select>
-              <div class="invalid-feedback">
-                Please provide a valid state/province.
+  
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required ngModel name="country">
+                  <option value="">Choose...</option>
+                  <option>South Africa</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
               </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required ngModel name="zip">
-              <div class="invalid-feedback">
-                Zip/Postal code required.
+  
+              <div class="col-md-4">
+                <label for="state" class="form-label">State/Province</label>
+                <select class="form-select" id="state" required ngModel name="state">
+                  <option value="">Choose...</option>
+                  <option>Eastern Cape</option>
+                  <option>Free State</option>
+                  <option>Gauteng</option>
+                  <option>KwaZulu Natal</option>
+                  <option>Limpopo</option>
+                  <option>Mpumalanga</option>
+                  <option>North West</option>
+                  <option>Northen Cape</option>
+                  <option>Western Cape</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state/province.
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required ngModel name="zip">
+                <div class="invalid-feedback">
+                  Zip/Postal code required.
+                </div>
               </div>
             </div>
           </div>

@@ -1,42 +1,43 @@
 <div class="container pt-3">
-    <div class="card">
+    <div class="cart">
         <div class="row">
-            <div class="col-sm-12 cart">
-                    <div class="row">
-                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                        <div class="col align-self-center text-right text-muted"> {{cartProducts.length}} items</div>
-                    </div>
-                    <div class="row border-top border-bottom justify-content-end mb-2" *ngFor="let prod of cartProducts; let i=index">
-                        <div class="row">
-                            <div class="col-5 img-container"><img class="img-fluid" [src]="prod.imageUrl"></div>
-                            <div class="col-5 flex-grow-1 w-100">
-                                <div class="text-muted text-end fs-sm-6">{{prod.title}}</div>
-                            </div>
-                            <div class="col-lg-3 col-sm-12 d-flex justify-content-end">
-                                <button (click)="DecreaseQuantity(prod)" class="quantity-btn me-1">-</button><span class="quantity">{{prod.quantity}}</span><button (click)="IncreaseQuantity(prod)" class="quantity-btn">+</button>
-                                <div class="fs-7 mx-1"> {{ prod.price | currency : 'R'}} <fa-icon [icon]="faTrashAlt" (click)="RemoveItem(prod,i)"></fa-icon></div>
+                    <div class="col-9">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-10"><h4><b>Shopping Cart</b></h4></div>
+                                <div class="col-2 text-muted"> {{cartProducts.length}} items</div>
                             </div>
                         </div>
+                        <div class="row" *ngFor="let prod of cartProducts; let i=index">
+                            <div class="border-top mb-2 py-1 d-flex flex-row align-items-center">
+                            <div class="col-2 img-container"><img class="img-fluid" [src]="prod.imageUrl"></div>
+                            <div class="col-5">
+                                <div class="text-muted text-start fs-sm-6">{{prod.title}}</div>
+                            </div>
+                            <div class="col-6 d-flex flex-row">
+                                <button (click)="DecreaseQuantity(prod)" class="quantity-btn me-2">-</button><span class="quantity">{{prod.quantity}}</span><button (click)="IncreaseQuantity(prod)" class="quantity-btn ms-2">+</button>
+                                <div class="fs-7 ms-3"> {{ prod.price | currency : 'R'}} <fa-icon [icon]="faTrashAlt" (click)="RemoveItem(prod,i)"></fa-icon></div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                </div>
                 <ng-container *ngIf="cartProducts.length != 0">
-                <div class="col-lg-4 col-sm-12 summary">
-                    <div><h5><b>Summary</b></h5></div>
-                    <hr>
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                        <div class="col">TOTAL PRICE</div>
-                        <div class="col text-right"> {{ cartTotal | currency : 'R' }}</div>
+                    <div class="col-lg-3 col-md-3 col-12 summary">
+                        <div><h5><b>Summary</b></h5></div>
+                        <hr>
+                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
+                            <div class="col">TOTAL PRICE</div>
+                            <div class="col text-right"> {{ cartTotal | currency : 'R' }}</div>
+                        </div>
+                        <button class="btn mt-5" routerLink="CheckOut">CHECKOUT</button>
                     </div>
-                    <button class="btn mt-5" routerLink="CheckOut">CHECKOUT</button>
-                </div>
-            </ng-container>    
+                </ng-container>    
             </div>
-    
             <div class="no-items-container" *ngIf="cartProducts.length == 0">
                 <h5 class="fw-bold">Your Cart Is Empty</h5>
                 <img src="./../../../../assets/images/sad-cart.jpg"/>
                 <button class="btn" routerLink="/Home">Go Shopping</button>
             </div>
         </div>
+        </div>
     
-    </div>

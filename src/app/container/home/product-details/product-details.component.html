@@ -1,15 +1,15 @@
     <div class="container">
-      <div class="row gx-6 pt-3">
-        <aside class="col-lg-5">
+      <div class="row pt-3">
+        <aside class="col-lg-5 col-md-5 col-sm-4 col-6">
           <div class="img-container mb-3 d-flex justify-content-center">
             <div class="no-stock-wrapper" *ngIf="!selectedProd.isInStock">
               <h1>Not In Stock</h1>
             </div>
-              <img style="max-width: 70%; max-height: 70vh; margin: auto;" class="img-fluid" [src]="selectedProd.imageUrl" />
+              <img class="img-fluid" [src]="selectedProd.imageUrl" />
           </div>
         </aside>
-        <main class="col-lg-4">
-          <div class="ps-lg-3">
+        <main class="col-lg-4 col-md-4 col-sm-4 col-6 flex-row-1">
+          <div class="ps-lg-3 ps-md-2 ps-sm-1 ps-1">
             <h4 class="title text-dark">
               {{selectedProd.title}}<br/>
             </h4>
@@ -29,40 +29,34 @@
               {{selectedProd.description}}
             </p>
             <div class="row" >
-              <dt class="col-3">Color</dt>
-              <dd class="col-9">Brown</dd>
-  
-              <dt class="col-3">Material</dt>
-              <dd class="col-9">Cotton, Jeans</dd>
-  
               <dt class="col-3">Brand</dt>
               <dd class="col-9">Reebook</dd>
             </div>
-  
             <hr />
   
             <div class="row mb-4" *ngIf="selectedProd.isInStock">
-              <div class="col-md-4 col-6">
-                <label class="mb-2">Size</label>
-                <select class="form-select border border-secondary" style="height: 35px;" [(ngModel)]="selectedSize">
-                  <option *ngFor="let size of selectedProd.sizeOptions" [value]="size">{{size}}</option>
-                </select>
-              </div>
-              <div class="col-md-4 col-6">
-                <label class="mb-2">Choose Color</label>
-                <div class="colour-div d-flex">
-                  <div class="d-flex" *ngFor="let color of selectedProd.colorOptions">
-                    <input type="radio" id="color-radio" value="" name="color"/>
-                    <label for="color-radio">{{color}}</label>
+              <div class="row" >
+                <dt class="col-3 pt-1">Size:</dt>
+                <dd class="col-9">
+                  <select class="form-select border border-secondary" style="height: 35px;" [(ngModel)]="selectedSize">
+                    <option value="" class="fs-5">Please Choose</option>
+                    <option *ngFor="let size of selectedProd.sizeOptions" [value]="size">{{size}}</option>
+                  </select></dd>
+                <dt class="col-4 pt-1">Color:</dt>
+                <dd class="col-8">
+                  <div class="colour-div d-flex">
+                    <div class="d-flex flex-column pt-1 mx-1" *ngFor="let color of selectedProd.colorOptions">
+                      <input type="radio" id="color-radio" value="" name="color"/>
+                      <label for="color-radio">{{color}}</label>
+                    </div>
                   </div>
-                </div>
-            
+                </dd>
               </div>
               <div class="col-12 mt-3">
-                <div class="row">
-                  <div class="col-5">
-                    <button class="btn add-to-cart-btn" (click)="AddToCart(selectedProd)" style="width: 180px;">
-                      <i class="me-1 fa fa-shopping-basket"></i>Add to cart 
+                <div class="row px-2">
+                  <div class="col-2">
+                    <button class="btn add-to-cart-btn" (click)="AddToCart(selectedProd)">
+                     Add to cart 
                     </button>
                   </div>
                 </div>
@@ -73,16 +67,16 @@
             </div>
           </div>
         </main>
-        <aside class="col-lg-3">
+        <aside class="col-lg-3 col-md-3 col-sm-4 col-12 col-12">
           <div class="px-0 border rounded-2 shadow-0">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Similar items</h5>
-                <div class="d-flex mb-3" *ngFor="let similarProd of similarProducts" (click)="ViewProduct(similarProd)">
+                <div class="d-flex mb-3 justify-content-start" *ngFor="let similarProd of similarProducts" (click)="ViewProduct(similarProd)">
                   <a class="me-3">
                     <img [src]="similarProd.imageUrl" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                   </a>
-                  <div class="info">
+                  <div class="info d-lg-block d-md-none d-sm-none">
                     <a class="nav-link mb-1">
                       {{ similarProd.title}} 
                     </a>

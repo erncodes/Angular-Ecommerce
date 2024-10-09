@@ -1,3 +1,4 @@
+@media(min-width : 320px){
 ul{
     display: flex;
     justify-content: center;
@@ -16,5 +17,28 @@ a{
 }
 #container{
     margin-bottom: 15px;
-    background-color: #000000;
+    overflow-y: hidden;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: white;
+    border-bottom: 2px solid gray;
+}
+#container div{
+    cursor: pointer;
+    width: 80px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 5px;
+    text-align: center;
+}
+#container div p{
+    margin: auto 0;
+}
+}
+@media(min-width : 555px){
+    #container div{
+        cursor: pointer;
+        width: 120px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-radius: 5px;
+        text-align: center;
+    }
 }
