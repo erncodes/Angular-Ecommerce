@@ -23,7 +23,6 @@ import { ProductDetailsComponent } from './container/home/product-details/produc
 import { ProductsCartComponent } from './container/home/products-cart/products-cart.component'; 
 import { SearchComboComponent } from './container/search-combo/search-combo.component';
 import { TopHeaderComponent } from './container/header/top-header/top-header.component';
-import { SnackbarComponent } from './container/home/snackbar/snackbar.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -45,7 +44,6 @@ import { HttpClientModule } from '@angular/common/http';
     CheckoutComponent,
     SearchComboComponent,
     HeroComponent,
-    SnackbarComponent
   ],
   imports: [
     BrowserModule,

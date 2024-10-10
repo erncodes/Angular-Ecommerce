@@ -23,7 +23,9 @@ export class MainheaderComponent implements OnInit{
     }
   )
   }
-
+  GoHome(){
+    scrollTo({top:0,left:0,behavior:'smooth'})
+  }
   ToggleNav(){
     this.isToggleOpen = !this.isToggleOpen;
   }

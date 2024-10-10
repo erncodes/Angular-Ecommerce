@@ -3,7 +3,7 @@
 </div>
 <div [class]="router.url == '/' || router.url == '/Home' ? 'router-outlet':'router-outlet other'">
     <app-hero *ngIf="router.url == '/' || router.url == '/Home'"></app-hero>
-    <div *ngIf="router.url != '/' " class="container path-display">
+    <div class="container path-display" id="path-display">
         <xng-breadcrumb></xng-breadcrumb>
     </div>
     <router-outlet></router-outlet>

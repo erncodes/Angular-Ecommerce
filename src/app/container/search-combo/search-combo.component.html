@@ -6,11 +6,12 @@
                 <div class="row">
                     <div class="form-floating col-10 mb-3">
                         <input type="email" class="form-control" id="floatingInput" [(ngModel)]="SearchText" (input)="SearchProduct(SearchText)">
-                        <label for="floatingInput">Search product. . .</label>
+                        <label for="floatingInput" class="ms-3">Search product. . .</label>
                       </div>
                       <div class="col-2 times-container">
                           <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
                       </div>
+                      <hr>
                     <div class="col-lg-4 col-sm-2 search-links" *ngIf="!SearchText">
                         <a href="" class="nav-link">New Arrivals</a>
                         <a href="" class="nav-link">Brands</a>

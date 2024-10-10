@@ -2,6 +2,7 @@ export class CartObject{
     id: number;
     title: string;
     description: string;
+    brand? : string | undefined;
     size: number;
     sizeOptions: number[];
     color: string;
@@ -14,13 +15,14 @@ export class CartObject{
     rating : number = 0;
     dateAdded : Date;
 
-    constructor(id : number, title : string ,description : string , size : number, 
+    constructor(id : number, title : string ,description : string , brand : string | undefined, size : number, 
           color : string,imageUrl : string, price : number, quantity : number,isInStock : boolean,leftInStock: number,
           colorOptions: string[],sizeOptions: number[],rating : number,dateAdded : Date)
           {
             this.id = id;
             this.title = title;
             this.description = description;
+            this.brand = brand;
             this.size = size;
             this.color = color;
             this.imageUrl = imageUrl;

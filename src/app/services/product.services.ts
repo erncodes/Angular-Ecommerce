@@ -61,11 +61,14 @@ export class ProductService{
       }
     }
     GetSimilarProducts(product : Product){
-      let returnProducts = this.products.filter( prod => (prod.rating === product.rating || prod.title.includes(product.title)) && prod.id != product.id);
+      let returnProducts = this.products.filter( prod => (prod.rating == product.rating || prod.title.includes(product.title)) && prod.id != product.id);
       if(returnProducts.length > 3){
         return returnProducts.slice(0,3);
       }
-      else
+      else if(returnProducts.length < 2)
+      {
+        return this.products.slice(0,3);
+      }
       return returnProducts;
     }
     PostProductsToApi(){
@@ -94,6 +97,7 @@ export class ProductService{
           title: "Jonathan D Derby",
           price: 1249.95,
           description: "Stylish shoes for all men.",
+          brand: "Jonathan D",
           imageUrl: "./assets/images/image (2)w.jpg",
           sizes: [7,8,9],
           colors: ["Black","Brown"],
@@ -108,6 +112,7 @@ export class ProductService{
           title: "Prestige Leather Lace-Up",
           price: 2999.99,
           description: "Men formal shoe for all occassions.",
+          brand: "Prestige",
           imageUrl: "./assets/images/image (12).jpg",
           sizes: [6,7],
           colors: ["Black","Brown"],
@@ -135,7 +140,8 @@ export class ProductService{
           id: 5,
           title: "Fabiani Strap Shoes",
           price: 3500,
-          description: "A cool laptop backpack",
+          description: "Elegant shoes for men.",
+          brand: "Fabiani",
           imageUrl: "./assets/images/image (3)w.jpg",
           sizes: [7,8],
           colors: ["Black"],
@@ -178,6 +184,7 @@ export class ProductService{
           title: "Fabiani Derby Formal",
           price: 2850,
           description: "Formal shoes for men.",
+          brand: "Fabiani",
           imageUrl: "./assets/images/image (4)w.jpg",
           sizes: [7,8],
           colors: ["Black"],
@@ -192,6 +199,7 @@ export class ProductService{
           title: "Mayor-N Black Leather",
           price: 2299.90,
           description: "Elegant Mayor-N shoes for men.",
+          brand: "Mayor-N",
           imageUrl: "./assets/images/image (14).webp",
           sizes: [6,7,8],
           colors: ["Black","Brown"],
@@ -459,6 +467,7 @@ export class ProductService{
           title: "Jonathan D Franklin",
           price: 845.99,
           description: "Formal shoes for men.",
+          brand: "Jonathan D",
           imageUrl: "./assets/images/image (3.)j.jpg",
           sizes: [6,7,8],
           colors: ["Brown"],

@@ -65,7 +65,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      background-color: black;
+      background-color: #000000;
       color: #D1FF65;
       font-weight: bold;
       border-radius: 50%;
@@ -75,6 +75,16 @@
       padding: auto;
       font-size: 12px;
   }
+  .nav-link{
+    color: #000000;
+  }
+  .nav-link:hover{
+    color: #000000bf;
+  }
+  .nav-link.active{
+    text-decoration: underline;
+  }
+
 
 }
 

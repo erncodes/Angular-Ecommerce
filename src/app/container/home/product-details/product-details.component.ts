@@ -9,7 +9,6 @@ import { CartObject } from 'src/app/models/cartObject';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.services';
 import { CartService } from 'src/app/services/productCart.services';
-import { SnackbarComponent } from 'src/app/container/home/snackbar/snackbar.component';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -28,12 +27,11 @@ export class ProductDetailsComponent implements OnInit{
   similarProducts : Product[] = [];
   router : Router = inject(Router);
   snackBar : MatSnackBar = inject(MatSnackBar);
-  message : string = 'Successfully Added To Cart!!';
   notificationService : NotificationService = inject(NotificationService);
 
   ngOnInit(){
     this.prodService.productClicked.subscribe((prod : Product)=>{
-      let cartObj = new CartObject( prod.id, prod.title, prod.description, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
+      let cartObj = new CartObject( prod.id, prod.title, prod.description,prod.brand, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
         prod.isInStock,prod.leftInStock,prod.colors,prod.sizes,prod.rating,prod.dateAdded);
       this.selectedProd = cartObj;
       this.similarProducts = this.prodService.GetSimilarProducts(prod);
@@ -41,13 +39,11 @@ export class ProductDetailsComponent implements OnInit{
   }
   AddToCart(prod : CartObject){
     this.cartService.AddToCart(prod);
-    this.notificationService.ShowNotification(this.message);
-
-  
   }
   ViewProduct(similarProd : Product){
     this.prodService.ViewProduct(similarProd);
     this.router.navigate(['Home','Product-view']);
+    scrollTo({top:0,left:0,behavior: 'smooth'});
   }
   PostProducts(){
     this.prodService.PostProductsToApi();

@@ -6,6 +6,9 @@
         padding: 15px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
+    .cart-content{
+        height: 200px;
+    }
     .summary{
         background-color: #000000;
         padding: 10px;
@@ -50,7 +53,7 @@
         text-decoration: none;
     }
     .quantity{
-        margin: 0 5px;
+        margin: auto 5px;
     }
     .quantity-btn{
         font-weight: bold;

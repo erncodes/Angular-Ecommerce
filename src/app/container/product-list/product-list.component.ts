@@ -17,6 +17,7 @@ export class ProductListComponent {
   ViewProduct(prod : any){
     this.prodService.ViewProduct(prod);
     this.router.navigate(['Home','Product-view']);
+    scrollTo({top:0,left:0,behavior: 'instant'});
   }
   ngOnInit(){
     this.prodService.GetProducts().subscribe((prodArray)=>{
