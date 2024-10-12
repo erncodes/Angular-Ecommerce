@@ -3,16 +3,16 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./container/home/home.component";
 import { ProductsCartComponent } from "./container/home/products-cart/products-cart.component"; 
 import { ProductDetailsComponent } from "./container/home/product-details/product-details.component";
-import { NotFoundComponent } from "./not-found/not-found.component";
-import { NewArrivalsComponent } from "./container/home/new-arrivals/new-arrivals.component";
-import { ContactComponent } from "./container/home/contact/contact.component";
+import { NotFoundComponent } from "./container/not-found/not-found.component";
 import { AboutComponent } from "./container/home/about/about.component";
 import { CheckoutComponent } from "./container/home/products-cart/checkout/checkout.component";
+import { LoginComponent } from "./container/login/login.component";
 
 
 const routes : Routes = [
     { path : '', component : HomeComponent},
     { path : 'Home', component : HomeComponent},
+    { path : 'Login', component : LoginComponent},
     { path  : 'Home', children : [
         { path : 'Product-view', component : ProductDetailsComponent},
         { path : 'Cart', component : ProductsCartComponent},
@@ -28,8 +28,6 @@ const routes : Routes = [
     ],
     exports:[ RouterModule ],
     declarations: [
-      NewArrivalsComponent,
-      ContactComponent,
       AboutComponent,
     ]
 })

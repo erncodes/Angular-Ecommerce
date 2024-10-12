@@ -1,5 +1,5 @@
 export class CartObject{
-    id: number;
+    id?: string | undefined;
     title: string;
     description: string;
     brand? : string | undefined;
@@ -15,7 +15,7 @@ export class CartObject{
     rating : number = 0;
     dateAdded : Date;
 
-    constructor(id : number, title : string ,description : string , brand : string | undefined, size : number, 
+    constructor(id : string | undefined, title : string ,description : string , brand : string | undefined, size : number, 
           color : string,imageUrl : string, price : number, quantity : number,isInStock : boolean,leftInStock: number,
           colorOptions: string[],sizeOptions: number[],rating : number,dateAdded : Date)
           {

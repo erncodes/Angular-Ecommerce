@@ -31,7 +31,7 @@ export class ProductDetailsComponent implements OnInit{
 
   ngOnInit(){
     this.prodService.productClicked.subscribe((prod : Product)=>{
-      let cartObj = new CartObject( prod.id, prod.title, prod.description,prod.brand, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
+      let cartObj = new CartObject( prod?.id, prod.title, prod.description,prod.brand, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
         prod.isInStock,prod.leftInStock,prod.colors,prod.sizes,prod.rating,prod.dateAdded);
       this.selectedProd = cartObj;
       this.similarProducts = this.prodService.GetSimilarProducts(prod);
@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit{
   }
   AddToCart(prod : CartObject){
     this.cartService.AddToCart(prod);
+    this.notificationService.ShowSuccessNotification();
   }
   ViewProduct(similarProd : Product){
     this.prodService.ViewProduct(similarProd);

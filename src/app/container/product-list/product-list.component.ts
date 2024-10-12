@@ -12,7 +12,7 @@ export class ProductListComponent {
   prodService = inject(ProductService);
   products : Product[] | undefined  = [];
   router : Router = inject(Router);
-  headerText : string = 'Popular Kicks'
+  headerText : string = 'Popular Kicks';
 
   ViewProduct(prod : any){
     this.prodService.ViewProduct(prod);

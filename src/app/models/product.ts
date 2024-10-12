@@ -1,5 +1,5 @@
  export class Product{
-      id: number;
+      id?: string | undefined;
       title: string;
       brand? : string | undefined;
       description: string;
@@ -13,7 +13,7 @@
       rating : number = 0;
       dateAdded : Date;
 
-      constructor(id : number, title : string ,description : string, brand : string | undefined , sizes : number[], 
+      constructor(id : string | undefined, title : string ,description : string, brand : string | undefined , sizes : number[], 
             colors : string[],imageUrl : string,isInStock : boolean,
             leftInStock : number, price : number, discount : number,rating : number,dateAdded : Date)
             {

@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.services';
 import { Router } from '@angular/router';
@@ -10,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-combo.component.css']
 })
 export class SearchComboComponent {
-  faMagnifyingGlass = faMagnifyingGlass;
   searchMode : boolean = false;
   prodService : ProductService = inject(ProductService);
   products : Product[] = [];

@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/productCart.services';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-products-cart',
@@ -8,7 +7,6 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./products-cart.component.css']
 })
 export class ProductsCartComponent implements OnInit{
-  faTrashAlt = faTrashAlt;
   cartTotal : number = 0;
   cartCount : number = 0;
  

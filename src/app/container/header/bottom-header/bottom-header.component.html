@@ -1,12 +1,11 @@
 <div class="d-flex justify-content-center align-content-center py-1" id="bottom-container">
-            <div class="mx-2 p-2" [class]="filterText == 'Popular'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('Popular')">
-                <p class="fw-bold">Popular</p>
-            </div>
-    
-            <div class="mx-2 p-2" [ngClass]="filterText == 'All'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('All')">
-                <p class="fw-bold">All</p>
-            </div>
-            <div class="mx-2 p-2" [ngClass]="filterText == 'NewArrivals'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('NewArrivals')">
-                <p class="fw-bold">New</p>
-            </div>
+    <div class="mx-2 p-2" [class]="filterText == 'Popular'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('Popular')">
+        <p class="fw-bold">Popular</p>
+    </div>
+    <div class="mx-2 p-2" [ngClass]="filterText == 'All'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('All')">
+        <p class="fw-bold">All</p>
+    </div>
+    <div class="mx-2 p-2" [ngClass]="filterText == 'NewArrivals'? 'bg-black text-white': 'bg-white text-black'" (click)="FilterProds('NewArrivals')">
+        <p class="fw-bold">New</p>
+    </div>
 </div>
