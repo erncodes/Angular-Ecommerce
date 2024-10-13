@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar,  MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,7 +17,6 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit{
-
   selectedProd : any;
   selectedSize : number = 0;
   selectedColor : string = '';
@@ -30,6 +29,7 @@ export class ProductDetailsComponent implements OnInit{
   notificationService : NotificationService = inject(NotificationService);
 
   ngOnInit(){
+
     this.prodService.productClicked.subscribe((prod : Product)=>{
       let cartObj = new CartObject( prod?.id, prod.title, prod.description,prod.brand, this.selectedSize , this.selectedColor, prod.imageUrl, prod.price,1,
         prod.isInStock,prod.leftInStock,prod.colors,prod.sizes,prod.rating,prod.dateAdded);

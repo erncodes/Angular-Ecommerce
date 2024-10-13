@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-container',
@@ -8,4 +9,5 @@ import { Router } from '@angular/router';
 })
 export class ContainerComponent {
   router : Router = inject(Router);
+  SelectedProd : EventEmitter<Product> = new EventEmitter<Product>()
 }

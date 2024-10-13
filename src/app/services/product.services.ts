@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Product } from "../models/product";
 import { BehaviorSubject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -41,7 +41,9 @@ export class ProductService{
    }
    //Get all products
    GetAllProducts(){
-    this.httpClient.get<{ [key : string] : Product}>('https://console.firebase.google.com/u/0/project/urbanstrides-640e5/database/urbanstrides-640e5-default-rtdb/data/~2F/products.json')
+    let headers = new HttpHeaders();
+     headers = headers.set('Access-Control-Allow-Origin', '*');
+    this.httpClient.get<{ [key : string] : Product}>('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',{headers : headers})
     .pipe(map((data)=>{
       let items = [];
       for(let key in data){
@@ -52,10 +54,13 @@ export class ProductService{
       }
       return items;
     })).subscribe((products)=>{
+      console.log(products);
       this.products = products;
+      console.log(typeof(products[1].dateAdded))
+      this.filteredProdsSub.next(products);
     });
    }
-    GetProducts(){ 
+    SubscribeToProducts(){ 
           return this.filteredProdsSub.asObservable();
     }
     //Search products based on title
@@ -66,7 +71,7 @@ export class ProductService{
     }
     //Check if the product was added in the last 30 days
     IsNewProduct(prod : Product){
-      const date1 = prod.dateAdded;
+      const date1 = new Date(prod.dateAdded);
       const date2 = new Date();
       const differenceInMilliseconds = date2.getTime() - date1.getTime();
       const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
@@ -93,7 +98,6 @@ export class ProductService{
         this.httpClient.post('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',prod).subscribe();
       })
     }
-
    filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
    productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
 

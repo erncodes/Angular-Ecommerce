@@ -20,7 +20,8 @@ export class ProductListComponent {
     scrollTo({top:0,left:0,behavior: 'instant'});
   }
   ngOnInit(){
-    this.prodService.GetProducts().subscribe((prodArray)=>{
+    this.prodService.GetAllProducts();
+    this.prodService.SubscribeToProducts().subscribe((prodArray)=>{
       this.products = prodArray;
     })
     this.prodService.textSubject.subscribe((text)=>{
