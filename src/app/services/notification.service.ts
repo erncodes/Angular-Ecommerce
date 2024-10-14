@@ -6,7 +6,6 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class NotificationService {
   snackBar : MatSnackBar = inject(MatSnackBar);
-
   ShowSuccessNotification(){
     const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
     const verticalPosition: MatSnackBarVerticalPosition = 'top';

@@ -10,8 +10,8 @@ export class BottomHeaderComponent {
   prodService : ProductService = inject(ProductService);
   filterText : string = '';
   ngOnInit(){
-    this.filterText = 'Popular';
-    this.prodService.GetProductsFiltered('Popular');
+    this.filterText = 'All';
+    this.prodService.GetProductsFiltered('');
   }
 
   FilterProds(text :string){

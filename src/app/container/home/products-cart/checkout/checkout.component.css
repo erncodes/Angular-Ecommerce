@@ -18,6 +18,9 @@
     .order-bill-address{
         order: 1;
     }
+    .ng-touched.ng-invalid{
+        border: red 1px solid !important;
+    }
 }
 
 

@@ -27,8 +27,6 @@ export class SearchComboComponent {
      this.prodService.Searchproducts(text);
   }
   ViewProduct(prod : any){
-    this.prodService.ViewProduct(prod);
-    this.router.navigate(['Home','Product-view']);
     this.ToggleSearch();
   }
 }

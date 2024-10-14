@@ -14,16 +14,17 @@ import { HeroComponent } from './container/home/hero/hero.component';
 import { ContainerComponent } from './container/container.component';
 import { HeaderComponent } from './container/header/header.component';
 import { FooterComponent } from './container/footer/footer.component';
-import { PaymentComponent } from './container/home/payment/payment.component';
+import { PaymentComponent } from './container/home/products-cart/checkout/payment/payment.component';
 import { NotFoundComponent } from './container/not-found/not-found.component';
-import { ProductListComponent } from './container/product-list/product-list.component';
+import { ProductListComponent } from './container/home/product-list/product-list.component';
 import { MainheaderComponent } from './container/header/mainheader/mainheader.component';
 import { ProductsCartComponent } from './container/home/products-cart/products-cart.component'; 
-import { ProductDetailsComponent } from './container/home/product-details/product-details.component';
+import { ProductDetailsComponent } from './container/home/product-list/product-details/product-details.component';
 import { SearchComboComponent } from './container/header/mainheader/search-combo/search-combo.component';
 import { BottomHeaderComponent } from './container/header/bottom-header/bottom-header.component';
 import { CheckoutComponent } from './container/home/products-cart/checkout/checkout.component';
 import { TopHeaderComponent } from './container/header/top-header/top-header.component';
+import { LoaderComponent } from './container/loader/loader.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { TopHeaderComponent } from './container/header/top-header/top-header.com
     HomeComponent,
     LoginComponent,
     HeroComponent,
+    LoaderComponent,
   ],
   imports: [
     FormsModule,

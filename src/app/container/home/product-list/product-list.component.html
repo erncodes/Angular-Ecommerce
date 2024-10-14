@@ -1,0 +1,47 @@
+      <div class="container" id="products" *ngIf="!isLoading">
+        <header  class="fw-bold mb-3 text-black fs-4">{{headerText}}</header>
+        <div class="row ms-3 fw-bold">[{{products?.length}}] products</div>
+        <hr>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-5 p-1" *ngFor="let product of products" [routerLink]="'Product-View/'+product.title" [state]="product">
+            <div class="card">
+                <img [src]="product.imageUrl" class="card-img-top" alt="">
+                <div class="star-icons d-flex flex-row">
+                  <i [class]="product.rating > 0 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="product.rating > 1 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="product.rating > 2 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="product.rating > 3 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="product.rating > 4 ? 'fa-solid fa-star me-3' : 'fa-regular fa-star me-3'"></i>
+                </div>
+                <div>
+                  <header class="card-title fs-5 my-2">{{product.title}}</header>
+                  <div class="discount-div" *ngIf="product.discount && product.isInStock">
+                    <p class="fw-bold">{{ product.discount | percent  }} OFF</p>
+                  </div>
+                  <div class="price-tag">
+                    <p class="fw-bold discounted-price bg-white p-1" *ngIf="product.discount">{{(product.price + product.price * product.discount) | currency : 'R'}}</p>
+                    <p class="fw-bold">{{product.price | currency : 'R'}}</p>
+                  </div>
+                  <ng-container *ngIf="product.isInStock, else stockinfo">
+                    <div>
+                      <p class="fw-bold text-secondary">In Stock</p>
+                    </div>
+                  </ng-container>
+                  <ng-template #stockinfo>
+                    <div>
+                      <p class="fw-bold text-danger">Out Of Stock</p>
+                    </div>
+                  </ng-template>
+                  <div class="row size-div">
+                    <div class="sizes col-2" *ngFor="let size of product.sizes">
+                      <p class="fw-bold">{{size}}</p>
+                    </div>
+                </div>
+                </div>
+           </div>
+          </div>
+        </div>
+     </div>
+     <div class="d-flex justify-content-center align-items-center" style="height: 75vh;" *ngIf="isLoading">
+       <app-loader></app-loader>
+     </div>

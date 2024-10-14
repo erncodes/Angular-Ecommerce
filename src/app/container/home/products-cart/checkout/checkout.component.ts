@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   promoDiscount : number = 0;
   IsPromoApplied : boolean = false;
   cartProducts : any[] = [];
+  showPaymentPage : boolean = false;
   ngOnInit(){
     this.cartService.cartItemsSubject.subscribe((products)=>{
       this.cartProducts = products;
@@ -40,6 +41,11 @@ export class CheckoutComponent implements OnInit {
      this.cartTotal = this.cartTotal;
    }
    CreateOrder(ngForm : NgForm){
-    console.log(ngForm.value);
+    if(ngForm.invalid){
+      this.showPaymentPage = !this.showPaymentPage;
+    }
+    else{
+      console.log(ngForm.value);
+    }
    }
 }

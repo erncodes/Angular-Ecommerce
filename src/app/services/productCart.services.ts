@@ -6,7 +6,19 @@ import { CartObject } from "../models/cartObject";
     providedIn: 'root'
 })
 export class CartService{
-
+    constructor(){
+    const localCartProducts = localStorage.getItem("CartProducts");
+            if(localCartProducts){
+                this.cartProducts = JSON.parse(localCartProducts);
+                this.cartItemsSubject.next(this.cartProducts);
+                this.cartTotal =this.GetCartTotal(this.cartProducts);
+                this.cartTotalSubject.next(this.cartTotal);
+            }
+            else
+            {
+                localStorage.setItem("CartProducts","[]");
+            }
+    }
     cartItemsSubject : BehaviorSubject<CartObject[]> = new BehaviorSubject<CartObject[]>([]);
     cartProducts : CartObject[] = [];
     cartTotal : any = 0;
@@ -18,9 +30,11 @@ export class CartService{
         return this.cartItemsSubject.asObservable();
     }
 
-    AddToCart(prod : CartObject){
-        this.GetCartProducts();
-        if(this.cartProducts.includes(prod)){
+    AddToCart(prod : CartObject, id : string | undefined){
+        var productInCart = this.cartProducts.find(product=>product.id === id);
+        console.log(productInCart);
+        if(productInCart){
+            console.log("found Something");
             this.IncreaseQuantity(prod);
             this.cartItemsSubject.next(this.cartProducts);
             this.cartTotalSubject.next(this.cartTotal);
@@ -30,23 +44,24 @@ export class CartService{
             this.cartTotal += prod.price;
             this.cartItemsSubject.next(this.cartProducts);
             this.cartTotalSubject.next(this.cartTotal);
+            localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
         }
     }
-
     RemoveFromCart(prod : any, index : number){
         this.cartProducts.splice(index,1);
         this.cartTotal -= (prod.price * prod.quantity);
         this.cartItemsSubject.next(this.cartProducts);
         this.cartTotalSubject.next(this.cartTotal);
-
+        localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
     }
     IncreaseQuantity(prod : CartObject){
         if(prod.quantity < prod.leftInStock)
             {
                 prod.quantity ++;
                 this.cartTotal += prod.price;
-                 this.cartItemsSubject.next(this.cartProducts);
-                 this.cartTotalSubject.next(this.cartTotal);
+                this.cartItemsSubject.next(this.cartProducts);
+                localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
+                this.cartTotalSubject.next(this.cartTotal);
             }
     }
     DecreaseQuantity(prod : CartObject){
@@ -54,6 +69,7 @@ export class CartService{
             prod.quantity --;
             this.cartTotal -= prod.price;
             this.cartItemsSubject.next(this.cartProducts);
+            localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
             this.cartTotalSubject.next(this.cartTotal);
         }
     }
@@ -67,5 +83,15 @@ export class CartService{
          else
          this.cartTotal = this.cartTotal;
        }
- 
+    GetCartTotal(array : CartObject[]){
+        var total = 0;
+        array.forEach((obj)=>{
+            total+= (obj.price * obj.quantity);
+        })
+        return total;
+    }
+    ClearCart(){
+        localStorage.removeItem("CartProducts");
+        this.cartProducts = [];
+    }
 }

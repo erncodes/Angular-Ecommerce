@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-
-body{
-background: linear-gradient(to right, rgba(235,224,232,1) 52%,rgba(254,191,1,1) 53%,rgba(254,191,1,1) 100%);
-font-family: 'Roboto', sans-serif;
+.container{
+	background: linear-gradient(to right, rgb(255, 255, 255) 52%,#D1FF65 53%,#D1FF65 100%);
+	font-family: 'Roboto', sans-serif;
+	height: auto;
+	padding: 20px 0;
+	margin-top: 10px;
 }
-
 .card{
 	border: none;
 	max-width: 450px;
 	border-radius: 15px;
-	margin: 150px 0 150px;
 	padding: 35px;
 	padding-bottom: 20px!important;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .heading{
-	color: #C1C1C1;
+	color: #000000;
 	font-size: 14px;
 	font-weight: 500;
 }
@@ -28,7 +28,7 @@ img:hover{
 .text-warning{
 	font-size: 12px;
 	font-weight: 500;
-	color: #edb537!important;
+	color: #000000!important;
 }
 #cno{
 	transform: translateY(-10px);
@@ -48,7 +48,7 @@ input{
 	padding-left: 90px;
 }
 .btn{
-	background: #F3A002!important;
+	background: #000000!important;
 	border: none;
 	border-radius: 30px;
 }

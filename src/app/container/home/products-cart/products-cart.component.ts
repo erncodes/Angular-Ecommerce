@@ -13,8 +13,6 @@ export class ProductsCartComponent implements OnInit{
   promoCode :string ='';
   cartProducts : any[] = [];
   cartService : CartService = inject(CartService);
-
-
   ngOnInit(){
     this.cartService.GetCartProducts().subscribe((prodArray)=>{
       this.cartProducts = prodArray;

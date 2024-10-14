@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./container/home/home.component";
 import { ProductsCartComponent } from "./container/home/products-cart/products-cart.component"; 
-import { ProductDetailsComponent } from "./container/home/product-details/product-details.component";
+import { ProductDetailsComponent } from "./container/home/product-list/product-details/product-details.component";
 import { NotFoundComponent } from "./container/not-found/not-found.component";
 import { AboutComponent } from "./container/home/about/about.component";
 import { CheckoutComponent } from "./container/home/products-cart/checkout/checkout.component";
@@ -14,7 +14,7 @@ const routes : Routes = [
     { path : 'Home', component : HomeComponent},
     { path : 'Login', component : LoginComponent},
     { path  : 'Home', children : [
-        { path : 'Product-view', component : ProductDetailsComponent},
+        { path : 'Product-View/:title', component : ProductDetailsComponent},
         { path : 'Cart', component : ProductsCartComponent},
         {path : 'Cart', children: [
             {path : 'CheckOut', component : CheckoutComponent}

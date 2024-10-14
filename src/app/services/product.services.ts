@@ -11,38 +11,33 @@ export class ProductService{
    productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
    filteredProdArray : any[] = [];
    httpClient : HttpClient = inject(HttpClient);
-   textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('Popular');
+   textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
    products : Product[] = [];
-   
-   ViewProduct(prod : any){
-    this.productClicked.next(prod);
-   }
-   //Filter products based on filter text,return all if no text passed
+   //Filter products based on filter text,return popular if no text passed
    GetProductsFiltered(filterText? : string){
-     if(filterText == '' || filterText == 'All'){
-       this.filteredProdArray = this.products;
-       this.filteredProdsSub.next(this.filteredProdArray);
-       this.textSubject.next('All Products');
-       return this.filteredProdArray;
-      }
       if(filterText == 'Popular'){
         this.filteredProdArray = this.products.filter(prod => prod.rating > 4);
         this.filteredProdsSub.next(this.filteredProdArray);
         this.textSubject.next('Popular Kicks');
        return this.filteredProdArray;
       }
-      if(filterText == 'NewArrivals'){
+      else if(filterText == 'NewArrivals'){
         this.filteredProdArray = this.products.filter(prod => this.IsNewProduct(prod));
         this.filteredProdsSub.next(this.filteredProdArray);
         this.textSubject.next('New Kicks This Month');
        return this.filteredProdArray;
       }
-       return this.products;
+      else{
+        this.filteredProdArray = this.products;
+        this.filteredProdsSub.next(this.filteredProdArray);
+        this.textSubject.next('All Products');
+        return this.filteredProdArray;
+       }
    }
    //Get all products
    GetAllProducts(){
     let headers = new HttpHeaders();
-     headers = headers.set('Access-Control-Allow-Origin', '*');
+     headers = headers.set('Access-Control-Allow-Origin','*');
     this.httpClient.get<{ [key : string] : Product}>('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',{headers : headers})
     .pipe(map((data)=>{
       let items = [];
@@ -54,10 +49,8 @@ export class ProductService{
       }
       return items;
     })).subscribe((products)=>{
-      console.log(products);
       this.products = products;
-      console.log(typeof(products[1].dateAdded))
-      this.filteredProdsSub.next(products);
+      this.filteredProdsSub.next(this.GetProductsFiltered());
     });
    }
     SubscribeToProducts(){ 
@@ -98,7 +91,7 @@ export class ProductService{
         this.httpClient.post('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',prod).subscribe();
       })
     }
-   filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
+   filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
    productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
 
 }

@@ -1,4 +1,7 @@
-<div class="container">
+<ng-template #payment>
+  <app-payment></app-payment>
+</ng-template>
+<div class="container" *ngIf="!showPaymentPage, else payment">
   <form #ngForm ="ngForm" (ngSubmit)="CreateOrder(ngForm)">
     <div class="container p-3">
       <div class="row g-5">
@@ -53,10 +56,10 @@
             <div class="row g-3">
               <div class="col-sm-6">
                 <label for="firstName" class="form-label">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" name="firstName" required ngModel>
-                <div class="invalid-feedback">
+                <input type="text" class="form-control" id="firstName" placeholder="" name="firstName" required ngModel #fname="ngModel">
+                <small class="text-danger" *ngIf="fname.invalid && fname.touched">
                   Valid first name is required.
-                </div>
+                </small>
               </div>
               <div class="col-sm-6">
                 <label for="lastName" class="form-label">Last name</label>
