@@ -1,46 +1,62 @@
-<div class="container pt-3">
-    <div class="cart">
+
+<div class="cart-wrap">
+    <div class="container">
         <div class="row">
-            <div class="col-9">
-                <div class="col-12">
-                    <div class="row">
-                            <div class="col-10"><h4><b>Shopping Cart</b></h4></div>
-                            <div class="col-2 text-muted"> {{cartProducts.length}} items</div>
-                    </div>
-                </div>
-                <div class="row" *ngFor="let prod of cartProducts; let i=index">
-                    <div class="border-top mb-2 py-1 d-flex flex-row align-items-center">
-                        <div class="col-2 img-container"><img class="img-fluid" [src]="prod.imageUrl"></div>
-                            <div class="col-5">
-                                <div class="text-muted text-start fs-sm-6">{{prod.title}}</div>
-                            </div>
-                            <div class="col-6 d-flex flex-row">
-                                <button (click)="DecreaseQuantity(prod)" class="quantity-btn me-2">-</button>
-                                <span class="quantity">{{prod.quantity}}</span>
-                                <button (click)="IncreaseQuantity(prod)" class="quantity-btn ms-2">+</button>
-                                <div class="fs-7 ms-3">{{ prod.price | currency : 'R'}}<i class="fa fa-trash-o" (click)="RemoveItem(prod,i)"></i>
+            <div class="col-md-12">
+                <div class="main-heading mb-1 fw-bold">My Cart</div>
+                <div class="table-list">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="30%">Product Name</th>
+                                <th width="15%">Unit Price</th>
+                                <th width="15%">Color</th>
+                                <th width="15%">Size</th>
+                                <th width="15%">Quantity</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of cartProducts,let i = index">
+                                <td width="30%">
+                                    <div class="display-flex align-center">
+                                        <div class="img-product">
+                                            <img [src]="product.imageUrl" alt="" class="mCS_img_loaded">
+                                        </div>
+                                        <div class="name-product">
+                                            {{product.title}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="10%" class="price">{{product.price | currency : 'R'}}</td>
+                                <td width="10%"><div class="color-span" [ngStyle]="{backgroundColor:product.color}"></div></td>
+                                <td width="10%"><button class="round-black-btn small-btn">{{product.size}}</button></td>
+                                <td width="30%">
+                                    <div class="d-flex flex-row align-items-center gap-1">
+                                        <button (click)="DecreaseQuantity(product)" class="quantity-btn">-</button>
+                                        <button class="round-black-btn small-btn">{{product.quantity}}</button>
+                                        <button (click)="IncreaseQuantity(product)" class="quantity-btn">+</button>
+                                    </div>
+                                </td>
+                                <td width="10%" class="text-center"><a class="trash-icon"><i class="far fa-trash-alt" (click)="RemoveItem(product,i)"></i></a></td>
+                            </tr>
+                            <tr>
+                                <div class="row justify-content-end" style="border-top: 1px solid rgba(0,0,0,.1);">
+                                    <div class="col">TOTAL PRICE</div>
+                                    <div class="col text-right"> {{ cartTotal | currency : 'R' }}</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <ng-container *ngIf="cartProducts.length != 0">
-                    <div class="col-lg-3 col-md-3 col-12 summary">
-                        <div><h5><b>Summary</b></h5></div>
-                        <hr>
-                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                            <div class="col">TOTAL PRICE</div>
-                            <div class="col text-right"> {{ cartTotal | currency : 'R' }}</div>
-                        </div>
-                        <button class="btn mt-5" routerLink="CheckOut">CHECKOUT</button>
-                    </div>
-                </ng-container>    
-        </div>
-        <div class="no-items-container" *ngIf="cartProducts.length == 0">
-            <h5 class="fw-bold">Your Cart Is Empty</h5>
-            <img src="./../../../../assets/images/sad-cart.jpg"/>
-            <button class="btn" routerLink="/Home">Go Shopping</button>
+                <div class="no-items-container" *ngIf="cartProducts.length == 0">
+                    <h5 class="fw-bold">Your Cart Is Empty</h5>
+                    <img src="./../../../../assets/images/sad-cart.jpg"/>
+                    <button class="btn" routerLink="/Home">Go Shopping</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
     

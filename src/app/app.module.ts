@@ -25,6 +25,7 @@ import { BottomHeaderComponent } from './container/header/bottom-header/bottom-h
 import { CheckoutComponent } from './container/home/products-cart/checkout/checkout.component';
 import { TopHeaderComponent } from './container/header/top-header/top-header.component';
 import { LoaderComponent } from './container/loader/loader.component';
+import { WishlistComponent } from './container/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LoaderComponent } from './container/loader/loader.component';
     LoginComponent,
     HeroComponent,
     LoaderComponent,
+    WishlistComponent,
   ],
   imports: [
     FormsModule,

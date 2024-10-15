@@ -1,13 +1,18 @@
-<button class="btn button-31" (click)="ToggleSearch()">
+<button class="round-black-btn" (click)="ToggleSearch()">
     <h5 class="fw-bold"><i class="fa fa-search"></i>Search</h5>
 </button>
 <div [class]="searchMode? 'search-outlet active' : 'search-outlet'">
     <div class="search-container p-5">
         <div class="row">
-            <div class="form-floating col-10 mb-3">
-                <input class="form-control" id="floatingInput" [(ngModel)]="SearchText" 
-                                                                (input)="SearchProduct(SearchText)">
-                <label for="floatingInput" class="ms-3">Search product. . .</label>
+            <div class="col-10 mb-3">
+                <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                      <div class="search">
+                        <input class="search_input" type="text" name="" placeholder="Search here..." [(ngModel)]="SearchText" (input)="SearchProduct(SearchText)">
+                        <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+                      </div>
+                    </div>
+                  </div>
             </div>
             <div class="col-2 times-container">
                  <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
@@ -39,3 +44,4 @@
         </div>
     </div>
 </div>
+

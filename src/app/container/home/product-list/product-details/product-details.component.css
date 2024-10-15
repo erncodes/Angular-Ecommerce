@@ -39,10 +39,7 @@
     background-color: black;
     color: white;
 }
-.add-to-cart-btn{
-    border-bottom: 4px solid #D1FF65;
-    background-color: black;
-    color: white;
+.round-black-btn{
     width: 110px;
 }
 

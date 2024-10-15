@@ -1,9 +1,4 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
-import { MatSnackBar,  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { CartObject } from 'src/app/models/cartObject';
 import { Product } from 'src/app/models/product';
@@ -17,19 +12,24 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit{
-  constructor(private cd : ChangeDetectorRef){}
+  constructor(private cd : ChangeDetectorRef){
+    const localWishProducts = localStorage.getItem("WishList");
+    if(localWishProducts){
+        this.wishList = JSON.parse(localWishProducts);
+    }
+  }
+  cartService : CartService = inject(CartService);
+  prodService : ProductService = inject(ProductService);
+  notificationService : NotificationService = inject(NotificationService);
+
   selectedProd : any;
   similarProduct : any;
   selectedSize : number = 0;
   selectedColor : string = '';
-  prodService : ProductService = inject(ProductService);
-  cartService : CartService = inject(CartService);
-  cartProducts : Product[] = [];
   similarProducts : Product[] = [];
   router : Router = inject(Router);
-  snackBar : MatSnackBar = inject(MatSnackBar);
-  notificationService : NotificationService = inject(NotificationService);
   cartObj : any;
+  wishList : CartObject[] = [];
 
   ngOnInit(){
     this.selectedProd = history.state;
@@ -60,5 +60,19 @@ export class ProductDetailsComponent implements OnInit{
   ViewProduct(prod :Product){
     this.router.navigate(['Home','Product-View'],{})
     this.cd.detectChanges();
+  }
+  AddToWishList(cartObj : CartObject){
+      this.wishList.push(cartObj);
+      localStorage.setItem("WishList",JSON.stringify(this.wishList));
+  }
+  IsWishItem(product : CartObject){
+    if(this.wishList){
+      var isWishItem = this.wishList.find( wishitem => wishitem.id == product.id);
+      if(isWishItem){
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 }
