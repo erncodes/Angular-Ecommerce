@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isLoginMode : boolean = true;
 
+  SwitchMode(){
+    this.isLoginMode = ! this.isLoginMode;
+  }
+  LoginOrSignUp(){
+    
+  }
 }

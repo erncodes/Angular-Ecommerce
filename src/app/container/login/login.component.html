@@ -3,25 +3,25 @@
                     <div class="card border-light-subtle shadow-sm col-6 py-3 mt-3">
                       <div class="row">
                         <div class="col-12 text-center">
-                            <h4 class="text-center text-black mb-3">Enter your details to login</h4>
+                            <h4 class="text-center text-black mb-3">{{isLoginMode? 'Login' : 'Register'}}</h4>
                         </div>
                       </div>
-                      <form action="#!" class="col-6 mx-auto">
+                      <form action="#!" class="col-6 mx-auto" #loginOrRegisterForm="ngForm" (ngSubmit)="LoginOrSignUp()">
                         <div class="row gy-3 overflow-hidden">
                           <div class="col-12">
                             <div class="form-floating mb-3">
-                              <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                              <input type="email" class="form-control" name="email" email id="email" placeholder="name@example.com" required ngModel>
                               <label for="email" class="form-label">Email</label>
                             </div>
                           </div>
                           <div class="col-12">
                             <div class="form-floating mb-3">
-                              <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
+                              <input type="password" class="form-control" name="password" id="password" minlength="8" placeholder="Password" required ngModel>
                               <label for="password" class="form-label">Password</label>
                             </div>
                           </div>
                           <div class="col-12 mb-2">
-                            <div class="form-check">
+                            <div class="form-check" *ngIf="isLoginMode">
                               <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
                               <label class="form-check-label text-secondary" for="remember_me">
                                 Keep me logged in
@@ -30,7 +30,7 @@
                           </div>
                           <div class="col-12">
                             <div class="d-grid">
-                              <button class="btn btn-outline-dark btn-md w-auto" type="submit">Log in now</button>
+                              <button class="round-black-btn w-auto" type="submit">{{isLoginMode? 'Login':'Sign Up'}}</button>
                             </div>
                           </div>
                         </div>
@@ -38,8 +38,8 @@
                       <div class="row">
                         <div class="col-12">
                           <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-3">
-                            <a href="#!" class="link-primary text-decoration-underline">Create new account</a>
-                            <a href="#!" class="link-primary text-decoration-underline">Forgot password</a>
+                            <p class="text-secondary">{{isLoginMode ? "Don't have an account?" : 'Already have an account?'}}</p>
+                            <a (click)="SwitchMode()" class="link-primary text-decoration-underline">{{isLoginMode? 'Create new account':'Login Here'}}</a>
                           </div>
                         </div>
                       </div>

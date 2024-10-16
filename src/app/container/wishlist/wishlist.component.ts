@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { CartObject } from 'src/app/models/cartObject';
+import { NotificationService } from 'src/app/services/notification.service';
 import { CartService } from 'src/app/services/productCart.services';
 
 @Component({
@@ -8,8 +9,12 @@ import { CartService } from 'src/app/services/productCart.services';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent {
+  selectedColor : string = '';
+  selectedSize : number = 0;
   wishListProducts : CartObject[] = [];
-  cartService : CartService= Inject(CartService);
+  notificationService : NotificationService = inject(NotificationService);
+  selectedProduct : any;
+  constructor(private cartService : CartService){}
 
   ngOnInit(){
     var localWishList = localStorage.getItem("WishList");
@@ -18,9 +23,8 @@ export class WishlistComponent {
     }
   }
   AddToCart(product : CartObject , index : number){
-    this.cartService.AddToCart(product, product.id);
-    this.wishListProducts.splice(index,1);
-    localStorage.setItem("WishList", JSON.stringify(this.wishListProducts));
+    this.selectedProduct = product;
+    this.isSelected(index, product);
   }
   RemoveFromWishList(index : number){
         this.wishListProducts.splice(index,1);
@@ -29,5 +33,33 @@ export class WishlistComponent {
   ClearWishList(){
     this.wishListProducts = [];
     localStorage.removeItem("WishList");
+  }
+  isSelected(i : number, product : CartObject){
+    var productFromArray = this.wishListProducts.filter(product => product == this.wishListProducts[i]);
+    if(productFromArray[0].id == product.id){
+      return true;
+    }
+    return false;
+  }
+  CancelAddToCart(){
+    this.selectedProduct = '';
+  }
+  ConfirmAddToCart(wishItem : CartObject, i : number){
+    if(this.selectedColor){
+      wishItem.color = this.selectedColor;
+      if(this.selectedSize != 0 && this.selectedSize.toString() != "Choose"){
+        wishItem.size = this.selectedSize;
+        this.cartService.AddToCart(wishItem,this.selectedProduct.id);
+        this.notificationService.ShowSuccessNotification();
+        this.selectedProduct = '';
+        this.RemoveFromWishList(i);
+      }
+      else{
+        this.notificationService.ShowErrorNotification('Please Choose Size');
+      }
+    }
+    else{
+      this.notificationService.ShowErrorNotification('Please Choose Color');
+    }
   }
 }
