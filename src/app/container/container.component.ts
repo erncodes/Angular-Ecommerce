@@ -6,6 +6,4 @@ import { Router } from '@angular/router';
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css']
 })
-export class ContainerComponent {
-  router : Router = inject(Router);
-}
+export class ContainerComponent { router : Router = inject(Router); }

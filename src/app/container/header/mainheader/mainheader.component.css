@@ -62,18 +62,18 @@
     position: relative;
   }
   .cartCount{
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: #000000;
-      color: #D1FF65;
-      font-weight: bold;
-      border-radius: 50%;
-      width: 17px;
-      height: 17px;
-      text-align: center;
-      padding: auto;
-      font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #000000;
+    color: #D1FF65;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    padding: auto;
+    font-size: 12px;
   }
   .nav-link{
     color: #000000;
@@ -84,8 +84,6 @@
   .nav-link.active{
     text-decoration: underline;
   }
-
-
 }
 
 

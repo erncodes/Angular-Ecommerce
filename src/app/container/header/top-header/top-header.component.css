@@ -1,6 +1,3 @@
-*{
-    text-transform: uppercase;
-}
-#topheader{
-    background-color: #D1FF65;
-}
+*{ text-transform: uppercase;}
+
+#topheader{ background-color: #D1FF65; }

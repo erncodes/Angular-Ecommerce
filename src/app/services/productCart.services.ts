@@ -8,23 +8,24 @@ import { CartObject } from "../models/cartObject";
 export class CartService{
     constructor(){
     const localCartProducts = localStorage.getItem("CartProducts");
-            if(localCartProducts){
-                this.cartProducts = JSON.parse(localCartProducts);
-                this.cartItemsSubject.next(this.cartProducts);
-                this.cartTotal =this.GetCartTotal(this.cartProducts);
-                this.cartTotalSubject.next(this.cartTotal);
+        if(localCartProducts){
+            this.cartProducts = JSON.parse(localCartProducts);
+            this.cartItemsSubject.next(this.cartProducts);
+            this.cartTotal =this.GetCartTotal(this.cartProducts);
+            this.cartTotalSubject.next(this.cartTotal);
             }
-            else
+        else
             {
                 localStorage.setItem("CartProducts","[]");
             }
     }
-    cartItemsSubject : BehaviorSubject<CartObject[]> = new BehaviorSubject<CartObject[]>([]);
-    cartProducts : CartObject[] = [];
+
     cartTotal : any = 0;
     promoCode5 : string = 'Urban5';
     promoCode10 : string = 'Urban10';
+    cartProducts : CartObject[] = [];
     cartTotalSubject : BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    cartItemsSubject : BehaviorSubject<CartObject[]> = new BehaviorSubject<CartObject[]>([]);
 
     GetCartProducts(){
         return this.cartItemsSubject.asObservable();
@@ -57,11 +58,11 @@ export class CartService{
     IncreaseQuantity(prod : CartObject){
         if(prod.quantity < prod.leftInStock)
             {
-                prod.quantity ++;
-                this.cartTotal += prod.price;
-                this.cartItemsSubject.next(this.cartProducts);
-                localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
-                this.cartTotalSubject.next(this.cartTotal);
+             prod.quantity ++;
+             this.cartTotal += prod.price;
+             this.cartItemsSubject.next(this.cartProducts);
+             localStorage.setItem("CartProducts", JSON.stringify(this.cartProducts));
+             this.cartTotalSubject.next(this.cartTotal);
             }
     }
     DecreaseQuantity(prod : CartObject){

@@ -8,11 +8,12 @@ import { map } from "rxjs/operators";
     providedIn : 'root'
 })
 export class ProductService{
-   productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
-   filteredProdArray : any[] = [];
-   httpClient : HttpClient = inject(HttpClient);
-   textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
-   products : Product[] = [];
+  products : Product[] = [];
+  filteredProdArray : any[] = [];
+  productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
+  textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
+  
+  httpClient : HttpClient = inject(HttpClient);
    //Filter products based on filter text,return popular if no text passed
    GetProductsFiltered(filterText? : string){
       if(filterText == 'Popular'){
@@ -39,7 +40,7 @@ export class ProductService{
     let headers = new HttpHeaders();
      headers = headers.set('Access-Control-Allow-Origin','*');
     this.httpClient.get<{ [key : string] : Product}>('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',{headers : headers})
-    .pipe(map((data)=>{
+      .pipe(map((data)=>{
       let items = [];
       for(let key in data){
         if(data.hasOwnProperty(key))
@@ -53,15 +54,18 @@ export class ProductService{
       this.filteredProdsSub.next(this.GetProductsFiltered());
     });
    }
+
     SubscribeToProducts(){ 
           return this.filteredProdsSub.asObservable();
     }
+
     //Search products based on title
     Searchproducts(text: string){
       this.filteredProdArray = this.products.filter( prod => prod.title.toLowerCase().includes(text.toLocaleLowerCase()));
       this.productSearch.next(this.filteredProdArray);
       return this.filteredProdArray;
     }
+    
     //Check if the product was added in the last 30 days
     IsNewProduct(prod : Product){
       const date1 = new Date(prod.dateAdded);
@@ -75,6 +79,7 @@ export class ProductService{
         return true;
       }
     }
+
     GetSimilarProducts(product : Product){
       let returnProducts = this.products.filter( prod => (prod.rating == product.rating || prod.title.includes(product.title)));
       if(returnProducts.length > 3){
@@ -86,11 +91,13 @@ export class ProductService{
       }
       return returnProducts;
     }
+
     PostProductsToApi(){
       this.products.forEach((prod)=>{
         this.httpClient.post('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',prod).subscribe();
       })
     }
+    
    filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
    productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
 

@@ -18,53 +18,58 @@ export class ProductDetailsComponent implements OnInit{
         this.wishList = JSON.parse(localWishProducts);
     }
   }
-  cartService : CartService = inject(CartService);
-  prodService : ProductService = inject(ProductService);
-  notificationService : NotificationService = inject(NotificationService);
-
+  cartObj : any;
   selectedProd : any;
   similarProduct : any;
   selectedSize : number = 0;
   selectedColor : string = '';
-  similarProducts : Product[] = [];
-  router : Router = inject(Router);
-  cartObj : any;
   wishList : CartObject[] = [];
-
+  similarProducts : Product[] = [];
+  
+  router : Router = inject(Router);
+  cartService : CartService = inject(CartService);
+  prodService : ProductService = inject(ProductService);
+  notifyService : NotificationService = inject(NotificationService);
+  
   ngOnInit(){
     this.selectedProd = history.state;
-    this.cartObj = new CartObject( this.selectedProd?.id, this.selectedProd.title, this.selectedProd.description,this.selectedProd.brand,
-    this.selectedSize , this.selectedColor, this.selectedProd.imageUrl, this.selectedProd.price,1,
-    this.selectedProd.isInStock,this.selectedProd.leftInStock,this.selectedProd.colors,this.selectedProd.sizes,this.selectedProd.rating,this.selectedProd.dateAdded);
+    this.cartObj = new CartObject( this.selectedProd?.id, this.selectedProd.title, this.selectedProd.description, this.selectedProd.brand,
+                    this.selectedSize , this.selectedColor, this.selectedProd.imageUrl, this.selectedProd.price, 1, this.selectedProd.isInStock,
+                    this.selectedProd.leftInStock,  this.selectedProd.colors, this.selectedProd.sizes,  this.selectedProd.rating, 
+                    this.selectedProd.dateAdded);
+
     this.prodService.GetSimilarProducts(this.selectedProd);
     this.similarProducts = this.prodService.GetSimilarProducts(this.selectedProd);
     this.cd.detectChanges();
   }
-  AddToCart(prod : CartObject){
-   
+  AddToCart(product : CartObject){
     if(this.selectedColor){
-      prod.color = this.selectedColor;
+      product.color = this.selectedColor;
       if(this.selectedSize != 0 && this.selectedSize.toString() != "Choose"){
-        prod.size = this.selectedSize;
-        this.cartService.AddToCart(prod, prod.id);
-        this.notificationService.ShowSuccessNotification();
+        product.size = this.selectedSize;
+        this.cartService.AddToCart(product, product.id);
+        this.notifyService.ShowSuccessNotification("Added To Cart");
       }
       else{
-        this.notificationService.ShowErrorNotification('Please Choose Size');
+        this.notifyService.ShowErrorNotification('Please Choose Size');
       }
     }
     else{
-      this.notificationService.ShowErrorNotification('Please Choose Color');
+        this.notifyService.ShowErrorNotification('Please Choose Color');
     }
   }
-  ViewProduct(prod :Product){
+
+  ViewProduct(product :Product){
     this.router.navigate(['Home','Product-View'],{})
     this.cd.detectChanges();
   }
+
   AddToWishList(cartObj : CartObject){
       this.wishList.push(cartObj);
       localStorage.setItem("WishList",JSON.stringify(this.wishList));
+      this.notifyService.ShowSuccessNotification("Added To Wishlist");
   }
+  
   IsWishItem(product : CartObject){
     if(this.wishList){
       var isWishItem = this.wishList.find( wishitem => wishitem.id == product.id);

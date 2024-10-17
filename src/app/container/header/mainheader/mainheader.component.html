@@ -1,14 +1,14 @@
 
   <nav class="navbar navbar-expand-lg bg-white py-4 px-5">
     <div class="brand-logo ms-4 mb-3">
-      <img src="./../../../../assets/images/Logo.jpg" class="logo-img"/>
+        <img src="./../../../../assets/images/Logo.jpg" class="logo-img"/>
         <div class="brand-container">
           <a class="navbar-brand" routerLink="Home" (click)="GoHome()">Urban Strides</a>
         </div>
     </div>
-      <div class="ms-auto col-lg-1 col-md-3 col-sm-3 col-7">
-          <app-search></app-search>
-      </div>
+    <div class="ms-auto col-lg-1 col-md-3 col-sm-3 col-7">
+        <app-search></app-search>
+    </div>
     <ul class="navbar-nav ms-auto pe-2 d-lg-flex d-md-none d-sm-none d-none">
         <li class="nav-item">
            <a class="nav-link" routerLink="Home">Home</a>
@@ -28,13 +28,11 @@
             <a class="nav-link" routerLink="Home/WishList"><i class="fa fa-heart-o"></i></a>
         </li>
     </ul>
-      <button class="ms-auto btn-toggler d-lg-none" type="button" id="navbarSideCollapse" 
-                                                 aria-label="Toggle navigation" (click)="ToggleNav()">
-             <span class="toggler-icon me-4"><i [class]="isToggleOpen? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x'" 
-                                                                                       aria-hidden="true"></i></span>
-      </button>
+    <button class="ms-auto btn-toggler d-lg-none" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" (click)="ToggleNav()">
+        <span class="toggler-icon me-4"><i [class]="isToggleOpen? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x'" aria-hidden="true"></i></span>
+    </button>
     <div class="" [ngClass]="isToggleOpen?'offcanvas-collapse open':'offcanvas-collapse'" id="navbarsExampleDefault">
-      <ul class="navbar-nav ms-auto p-3">
+        <ul class="navbar-nav ms-auto p-3">
             <li class="nav-item">
                 <p class="fw-bold fs-4 mx-auto">Menu</p>
                 <hr>
@@ -54,6 +52,6 @@
               <a class="nav-link" href="#">About</a>
             </li>
           <hr>
-      </ul>
+        </ul>
     </div>
   </nav>

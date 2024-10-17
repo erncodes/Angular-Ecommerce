@@ -12,7 +12,7 @@
                         <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                       </div>
                     </div>
-                  </div>
+                </div>
             </div>
             <div class="col-2 times-container">
                  <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
@@ -26,8 +26,7 @@
                 <header class="fw-bold" *ngIf="!SearchText">Popular</header>
                 <header class="fw-bold" *ngIf="SearchText">Search results for "{{SearchText}}"</header>
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-5 card p-0 m-1 justify-content-center" 
-                                                    *ngFor="let item of products" (click)="ViewProduct(item)">
+                    <div class="col-lg-3 col-md-3 col-5 card p-0 m-1 justify-content-center" *ngFor="let item of products" (click)="ViewProduct(item)">
                         <img [src]="item.imageUrl" class="card-img-top" alt="">
                         <div class="">
                             <h5 class="card-title">{{item.title}}</h5>

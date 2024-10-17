@@ -9,12 +9,14 @@ import { CartService } from 'src/app/services/productCart.services';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent {
-  selectedColor : string = '';
-  selectedSize : number = 0;
-  wishListProducts : CartObject[] = [];
-  notificationService : NotificationService = inject(NotificationService);
-  selectedProduct : any;
   constructor(private cartService : CartService){}
+
+  selectedProduct : any;
+  selectedSize : number = 0;
+  selectedColor : string = '';
+  wishListProducts : CartObject[] = [];
+
+  notificationService : NotificationService = inject(NotificationService);
 
   ngOnInit(){
     var localWishList = localStorage.getItem("WishList");
@@ -22,18 +24,22 @@ export class WishlistComponent {
       this.wishListProducts = JSON.parse(localWishList);
     }
   }
+
   AddToCart(product : CartObject , index : number){
     this.selectedProduct = product;
     this.isSelected(index, product);
   }
+
   RemoveFromWishList(index : number){
-        this.wishListProducts.splice(index,1);
-        localStorage.setItem("WishList", JSON.stringify(this.wishListProducts));
+    this.wishListProducts.splice(index,1);
+    localStorage.setItem("WishList", JSON.stringify(this.wishListProducts));
   }
+
   ClearWishList(){
     this.wishListProducts = [];
     localStorage.removeItem("WishList");
   }
+
   isSelected(i : number, product : CartObject){
     var productFromArray = this.wishListProducts.filter(product => product == this.wishListProducts[i]);
     if(productFromArray[0].id == product.id){
@@ -41,16 +47,19 @@ export class WishlistComponent {
     }
     return false;
   }
+
   CancelAddToCart(){
     this.selectedProduct = '';
   }
+
   ConfirmAddToCart(wishItem : CartObject, i : number){
-    if(this.selectedColor){
+    if(this.selectedColor)
+    {
       wishItem.color = this.selectedColor;
       if(this.selectedSize != 0 && this.selectedSize.toString() != "Choose"){
         wishItem.size = this.selectedSize;
         this.cartService.AddToCart(wishItem,this.selectedProduct.id);
-        this.notificationService.ShowSuccessNotification();
+        this.notificationService.ShowSuccessNotification("Added To Cart");
         this.selectedProduct = '';
         this.RemoveFromWishList(i);
       }

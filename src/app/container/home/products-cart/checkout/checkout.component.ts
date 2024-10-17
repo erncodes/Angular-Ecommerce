@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/productCart.services';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,44 +9,56 @@ import { CartService } from 'src/app/services/productCart.services';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  cartService : CartService = inject(CartService);
-  standardShipping_Fee : number = 75;
-  fastShipping_Fee : number = 125;
-  cartTotal : number = 0;
-  promoCode : string = '';
   selectedDelivery : string = '';
+  promoCode : string = '';
+  cartTotal : number = 0;
   promoDiscount : number = 0;
+  fastShipping_Fee : number = 125;
+  standardShipping_Fee : number = 75;
+  showPaymentPage : boolean = false;
   IsPromoApplied : boolean = false;
   cartProducts : any[] = [];
-  showPaymentPage : boolean = false;
+  
+  cartService : CartService = inject(CartService);
+  notifyService : NotificationService = inject(NotificationService);
+
   ngOnInit(){
-    this.cartService.cartItemsSubject.subscribe((products)=>{
-      this.cartProducts = products;
+    this.cartService.cartItemsSubject.subscribe({
+      next : (products) => { this.cartProducts = products; },
+      error : (error) => { this.notifyService.ShowErrorNotification(error) }
     });
-    this.cartService.cartTotalSubject.subscribe((total)=>{
-      this.cartTotal = total;
-    })
+
+    this.cartService.cartTotalSubject.subscribe({
+      next : (total) => { this.cartTotal = total; },
+      error : (error) => { this.notifyService.ShowErrorNotification(error) }
+    });
+
   }
-  ApplyPromoCode(input : any, selectedDelivery: any){
+
+  ApplyPromoCode(input : any, selectedDelivery: any)
+  {
     if(input.value === this.cartService.promoCode5){
-       this.cartTotal = (this.cartTotal - ((this.cartTotal) * 0.05) + +selectedDelivery);
+       this.cartTotal = (this.cartTotal - ((this.cartTotal) * 0.05) + (+selectedDelivery));
        this.promoDiscount = this.cartTotal * 0.05;
        this.IsPromoApplied = true;
      }
      else if(input.value === this.cartService.promoCode10){
-       this.cartTotal = (this.cartTotal - ((this.cartTotal) * 0.10)) + +selectedDelivery;
+       this.cartTotal = (this.cartTotal - ((this.cartTotal) * 0.10)) + (+selectedDelivery);
        this.promoDiscount = this.cartTotal * 0.05;
        this.IsPromoApplied = true;
      }
      else
-     this.cartTotal = this.cartTotal;
-   }
+      this.cartTotal = this.cartTotal;
+  }
+
    CreateOrder(ngForm : NgForm){
-    if(ngForm.invalid){
-      this.showPaymentPage = !this.showPaymentPage;
-    }
-    else{
-      console.log(ngForm.value);
-    }
+      if(ngForm.invalid)
+      {
+        this.showPaymentPage = !this.showPaymentPage;
+      }
+      else
+      {
+        console.log(ngForm.value);
+      }
    }
 }

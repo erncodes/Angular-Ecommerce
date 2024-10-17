@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./container/home/home.component";
+import { LoginComponent } from "./container/login/login.component";
+import { AboutComponent } from "./container/home/about/about.component";
+import { WishlistComponent } from "./container/wishlist/wishlist.component";
+import { NotFoundComponent } from "./container/not-found/not-found.component";
+import { CheckoutComponent } from "./container/home/products-cart/checkout/checkout.component";
 import { ProductsCartComponent } from "./container/home/products-cart/products-cart.component"; 
 import { ProductDetailsComponent } from "./container/home/product-list/product-details/product-details.component";
-import { NotFoundComponent } from "./container/not-found/not-found.component";
-import { AboutComponent } from "./container/home/about/about.component";
-import { CheckoutComponent } from "./container/home/products-cart/checkout/checkout.component";
-import { LoginComponent } from "./container/login/login.component";
-import { WishlistComponent } from "./container/wishlist/wishlist.component";
 
 
 const routes : Routes = [
@@ -15,9 +15,9 @@ const routes : Routes = [
     { path : 'Home', component : HomeComponent},
     { path : 'Login', component : LoginComponent},
     { path  : 'Home', children : [
-        { path : 'Product-View/:title', component : ProductDetailsComponent},
         { path : 'WishList', component : WishlistComponent},
         { path : 'Cart', component : ProductsCartComponent},
+        { path : 'Product-View/:title', component : ProductDetailsComponent},
         {path : 'Cart', children: [
             {path : 'CheckOut', component : CheckoutComponent}
         ]}

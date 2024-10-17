@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 import { CartService } from 'src/app/services/productCart.services';
 
 @Component({
@@ -7,34 +8,42 @@ import { CartService } from 'src/app/services/productCart.services';
   styleUrls: ['./products-cart.component.css']
 })
 export class ProductsCartComponent implements OnInit{
+  promoCode :string ='';
   cartTotal : number = 0;
   cartCount : number = 0;
- 
-  promoCode :string ='';
   cartProducts : any[] = [];
+ 
   cartService : CartService = inject(CartService);
+  notifyService : NotificationService = inject(NotificationService);
+
   ngOnInit(){
-    this.cartService.GetCartProducts().subscribe((prodArray)=>{
+    this.cartService.GetCartProducts().subscribe({
+      next : (prodArray) => {
       this.cartProducts = prodArray;
-      this.cartCount = this.cartProducts.length;
+      this.cartCount = this.cartProducts.length; },
+      error : (error) => { this.notifyService.ShowErrorNotification(error) }
     });
-  this.cartService.cartTotalSubject.subscribe((total)=>{
-    this.cartTotal = total;
-  });
+
+    this.cartService.cartTotalSubject.subscribe({
+      next : (total) => { this.cartTotal = total; },
+      error : (error) => { this.notifyService.ShowErrorNotification(error) }
+    });
   }
+
   RemoveItem(prod : any , index : number){
    this.cartService.RemoveFromCart(prod, index);
    if(this.cartCount === 0){this.ClearCart()}
   }
+
   IncreaseQuantity(prod : any){
     this.cartService.IncreaseQuantity(prod);
   }
+
   DecreaseQuantity(prod : any){
       this.cartService.DecreaseQuantity(prod);
   }
+
   ClearCart(){
     this.cartTotal = 0;
   }
-
-
 }

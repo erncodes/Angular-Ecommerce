@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.services';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-search',
@@ -9,24 +10,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-combo.component.css']
 })
 export class SearchComboComponent {
-  searchMode : boolean = false;
-  prodService : ProductService = inject(ProductService);
-  products : Product[] = [];
   SearchText : string = '';
+  products : Product[] = [];
+  searchMode : boolean = false;
+  
   router : Router = inject(Router);
+  prodService : ProductService = inject(ProductService);
+  notifyService : NotificationService = inject(NotificationService);
 
   ToggleSearch(){
-    this.searchMode = !this.searchMode
-  }
+      this.searchMode = !this.searchMode
+    }
+
   ngOnInit(){
-    this.prodService.productSearch.subscribe((data)=>{
-      this.products = data;
-    })
-  }
+      this.prodService.productSearch.subscribe({
+        next : (data) => {this.products = data;},
+        error: (error)=>{ this.notifyService.ShowErrorNotification(error) }
+      })
+    }
+
   SearchProduct(text : any){
-     this.prodService.Searchproducts(text);
-  }
+      this.prodService.Searchproducts(text);
+    }
+    
   ViewProduct(prod : any){
-    this.ToggleSearch();
-  }
+      this.ToggleSearch();
+    }
 }

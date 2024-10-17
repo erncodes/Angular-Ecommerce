@@ -6,26 +6,35 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class NotificationService {
   snackBar : MatSnackBar = inject(MatSnackBar);
-  ShowSuccessNotification(){
-    const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-    const verticalPosition: MatSnackBarVerticalPosition = 'top';
-    this.snackBar.open("added to cart","close",
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  ShowSuccessNotification(message : string){
+    this.snackBar.open(message,"close",
       {
         duration :2000,  
-        horizontalPosition: horizontalPosition,
-        verticalPosition: verticalPosition,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
         panelClass: ['custom-snackbar', 'snackbar-success'],
-    });
+      });
   }
+
   ShowErrorNotification(error : string){
-    const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-    const verticalPosition: MatSnackBarVerticalPosition = 'top';
     this.snackBar.open(error,"close",
       {
         duration :2000,  
-        horizontalPosition: horizontalPosition,
-        verticalPosition: verticalPosition,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
         panelClass: ['custom-snackbar', 'snackbar-error'],
-    });
+      });
+  }
+  ShowInfoNotification(info : string){
+    this.snackBar.open(info,"close",
+      {
+        duration :2000,  
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        panelClass: ['custom-snackbar', 'snackbar-info'],
+      });
   }
 }
