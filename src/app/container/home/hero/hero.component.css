@@ -72,6 +72,9 @@
         margin: auto 0;
         font-size: 0.9rem;
         color: #ffffff; 
+        animation: blink 1.5s linear infinite;
+        animation-delay: 0.5s;
+
     }
     .sale-banner p{
         transform: skew(-45deg);
@@ -79,6 +82,7 @@
         margin: auto 0;
         font-size: 0.9rem;
         color: rgb(0, 0, 0);
+        animation: blink 1.5s linear infinite;
     }
 }
 @media(min-width:425px){
@@ -127,3 +131,11 @@
         font-size: 1.4rem;
     }
 }
+@keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartObject } from 'src/app/models/cartObject';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.services';
@@ -18,29 +18,38 @@ export class ProductDetailsComponent implements OnInit{
         this.wishList = JSON.parse(localWishProducts);
     }
   }
-  cartObj : any;
-  selectedProd : any;
+  cartObj : CartObject | undefined;
+  selectedProd : Product | undefined;
   similarProduct : any;
   selectedSize : number = 0;
   selectedColor : string = '';
   wishList : CartObject[] = [];
   similarProducts : Product[] = [];
   
-  router : Router = inject(Router);
   cartService : CartService = inject(CartService);
+  activeRoute : ActivatedRoute = inject(ActivatedRoute);
   prodService : ProductService = inject(ProductService);
   notifyService : NotificationService = inject(NotificationService);
   
   ngOnInit(){
-    this.selectedProd = history.state;
-    this.cartObj = new CartObject( this.selectedProd?.id, this.selectedProd.title, this.selectedProd.description, this.selectedProd.brand,
-                    this.selectedSize , this.selectedColor, this.selectedProd.imageUrl, this.selectedProd.price, 1, this.selectedProd.isInStock,
-                    this.selectedProd.leftInStock,  this.selectedProd.colors, this.selectedProd.sizes,  this.selectedProd.rating, 
-                    this.selectedProd.dateAdded);
-
-    this.prodService.GetSimilarProducts(this.selectedProd);
-    this.similarProducts = this.prodService.GetSimilarProducts(this.selectedProd);
+    scrollTo({top:0,left:0,behavior: 'smooth'});
+    let productId = this.activeRoute.snapshot.paramMap.get('id');
     this.cd.detectChanges();
+    if(productId)
+    {
+      this.prodService.GetProductById(productId);
+      this.prodService.productClicked.subscribe((prod)=>{
+        this.selectedProd = prod;
+        this.cartObj = new CartObject( prod.id, prod.title, prod.description, prod.brand,
+          this.selectedSize , this.selectedColor, prod.imageUrl, prod.price, 1, prod.isInStock,
+          prod.leftInStock,  prod.colors, prod.sizes,  prod.rating, 
+          prod.dateAdded);
+          if (this.selectedProd){
+            this.prodService.GetSimilarProducts(this.selectedProd)
+          }
+          this.similarProducts = this.prodService.GetSimilarProducts(prod);
+      })
+    }
   }
   AddToCart(product : CartObject){
     if(this.selectedColor){
@@ -59,20 +68,22 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  ViewProduct(product :Product){
-    this.router.navigate(['Home','Product-View'],{})
+  ViewProduct(id? : string){
+    scrollTo({top:0,left:0,behavior: 'smooth'});
+    this.prodService.GetProductById(id);
     this.cd.detectChanges();
   }
 
-  AddToWishList(cartObj : CartObject){
+  AddToWishList(cartObj : CartObject | undefined){
+    if(cartObj)
       this.wishList.push(cartObj);
       localStorage.setItem("WishList",JSON.stringify(this.wishList));
       this.notifyService.ShowSuccessNotification("Added To Wishlist");
   }
   
-  IsWishItem(product : CartObject){
+  IsWishItem(product? : CartObject){
     if(this.wishList){
-      var isWishItem = this.wishList.find( wishitem => wishitem.id == product.id);
+      var isWishItem = this.wishList.find( wishitem => wishitem.id == product?.id);
       if(isWishItem){
         return true;
       }

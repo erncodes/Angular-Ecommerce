@@ -1,95 +1,103 @@
-    <div class="container" id="details-container">
-      <div class="row pt-3">
-        <aside class="col-lg-5 col-md-5 col-sm-4 col-6">
-          <div class="img-container mb-3 d-flex justify-content-center">
-            <div class="no-stock-wrapper" *ngIf="!cartObj.isInStock">
-              <h1>Not In Stock</h1>
-            </div>
-              <img class="img-fluid" [src]="cartObj.imageUrl" />
-              <div class="heart-icon-container">
-                <i [class]="IsWishItem(cartObj)? 'fa fa-heart text-danger' : 'fa fa-heart-o'" title="Add To WishList" (click)="AddToWishList(cartObj)"></i>
+    <div *ngIf="!cartObj" class="w-100 d-flex justify-content-center align-items-center" style="height: 50vh;">
+      <app-loader></app-loader>
+    </div>
+    <div class="" *ngIf="cartObj">
+      <div class="container" id="details-container">
+        <div class="row pt-3">
+          <aside class="col-lg-5 col-md-5 col-sm-4 col-6">
+            <div class="img-container mb-3 d-flex justify-content-center">
+              <div class="no-stock-wrapper" *ngIf="!cartObj.isInStock">
+                <h1>Not In Stock</h1>
               </div>
-          </div>
-        </aside>
-        <main class="col-lg-4 col-md-4 col-sm-4 col-6 flex-row-1 my-3">
-          <div class="ps-lg-3 ps-md-2 ps-sm-1 ps-1">
-            <h4 class="title text-dark">
-              {{cartObj.title}}<br/>
-            </h4>
-            <div class="d-flex flex-row my-3">
-              <div class="mb-1 me-2">
-                <i [class]="cartObj.rating > 0 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
-                <i [class]="cartObj.rating > 1 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
-                <i [class]="cartObj.rating > 2 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
-                <i [class]="cartObj.rating > 3 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
-                <i [class]="cartObj.rating > 4 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                <img class="img-fluid" [src]="cartObj.imageUrl" />
+                <div class="heart-icon-container">
+                  <i [class]="IsWishItem(cartObj)? 'fa fa-heart text-black' : 'fa fa-heart-o'" title="Add To WishList" (click)="AddToWishList(cartObj)"></i>
+                </div>
+            </div>
+          </aside>
+          <main class="col-lg-4 col-md-4 col-sm-4 col-6 flex-row-1 my-3">
+            <div class="ps-lg-3 ps-md-2 ps-sm-1 ps-1">
+              <h4 class="title text-dark">
+                {{cartObj.title}}<br/>
+              </h4>
+              <div class="d-flex flex-row my-3">
+                <div class="mb-1 me-2">
+                  <i [class]="cartObj.rating > 0 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="cartObj.rating > 1 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="cartObj.rating > 2 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="cartObj.rating > 3 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                  <i [class]="cartObj.rating > 4 ? 'fa-solid fa-star' : 'fa-regular fa-star'" ></i>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <span class="h5">{{ cartObj.price | currency : 'R' }}</span>
-            </div>
-            <p>
-              {{cartObj.description}}
-            </p>
-            <div class="row" >
-              <hr class="details-options fw-bold">
-              <dt class="col-3 details-options">Brand:</dt>
-              <dd class="col-9 fw-bold">{{cartObj.brand? cartObj.brand : 'Unknown'}}</dd>
-            </div>
-            <div class="row mb-4" *ngIf="cartObj.isInStock">
+              <div class="mb-3">
+                <span class="h5">{{ cartObj.price | currency : 'R' }}</span>
+              </div>
+              <p>
+                {{cartObj.description}}
+              </p>
               <div class="row" >
-                <dt class="col-4 pt-1 details-options">Color:</dt>
-                <dd class="col-8 details-options">
-                  <div class="colour-div d-flex">
-                    <div class="d-flex flex-column pt-1 mx-1" *ngFor="let color of cartObj.colorOptions">
-                      <input type="radio" id="color-radio"  [value]="color" name="color" [(ngModel)]="selectedColor"/>
-                      <label for="color-radio">{{color}}</label>
+                <hr class="details-options fw-bold">
+                <dt class="col-3 details-options">Brand:</dt>
+                <dd class="col-9 fw-bold">{{cartObj.brand? cartObj.brand : 'Unknown'}}</dd>
+              </div>
+              <div class="row mb-4" *ngIf="cartObj.isInStock">
+                <div class="row" >
+                  <dt class="col-4 pt-1 details-options">Color:</dt>
+                  <dd class="col-8 details-options">
+                    <div class="colour-div d-flex">
+                      <div class="d-flex flex-column pt-1 mx-1" *ngFor="let color of cartObj.colorOptions">
+                        <input type="radio" id="color-radio"  [value]="color" name="color" [(ngModel)]="selectedColor"/>
+                        <label for="color-radio">{{color}}</label>
+                      </div>
+                    </div>
+                  </dd>
+                  <dt class="col-3 pt-1 details-options">Size:</dt>
+                  <dd class="col-9 ">
+                    <select class="form-select border border-secondary" style="height: 35px;" [(ngModel)]="selectedSize">
+                      <option>Choose</option>
+                      <option *ngFor="let size of cartObj.sizeOptions" [value]="size">{{size}}</option>
+                    </select></dd>
+                  <dd class="col-8 details-options">
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="row px-2">
+                    <div class="col-2">
+                      <button class="round-black-btn" (click)="AddToCart(cartObj)">
+                       Add to cart 
+                      </button>
                     </div>
                   </div>
-                </dd>
-                <dt class="col-3 pt-1 details-options">Size:</dt>
-                <dd class="col-9 ">
-                  <select class="form-select border border-secondary" style="height: 35px;" [(ngModel)]="selectedSize">
-                    <option>Choose</option>
-                    <option *ngFor="let size of cartObj.sizeOptions" [value]="size">{{size}}</option>
-                  </select></dd>
-                <dd class="col-8 details-options">
+                </div>
               </div>
-              <div class="col-12 mt-3">
-                <div class="row px-2">
-                  <div class="col-2">
-                    <button class="round-black-btn" (click)="AddToCart(cartObj)">
-                     Add to cart 
-                    </button>
-                  </div>
+              <div class="notify-btn-container" *ngIf="!cartObj.isInStock">
+                <button type="button" class="round-black-btn">Notify Me</button>
+              </div>
+            </div>
+          </main>
+          <aside class="col-lg-3 col-md-3 col-sm-4 col-12 col-12">
+            <div class="px-0 border rounded-2 shadow-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Similar items</h5>
+                  <hr>
+                  <ng-container *ngIf="similarProducts">
+                    <div class="d-flex mb-3 justify-content-start" *ngFor="let similarProd of similarProducts" [routerLink]="'/Home/Product-View/'+similarProd.id" (click)="ViewProduct(similarProd.id)">
+                     <a class="me-3">
+                       <img [src]="similarProd.imageUrl" class="img-md img-thumbnail" />
+                     </a>
+                     <div class="info d-lg-block d-md-none d-sm-none">
+                       <a class="nav-link mb-1">
+                         {{ similarProd.title}} 
+                       </a>
+                       <strong class="text-dark"> {{similarProd.price | currency : 'R'}}</strong>
+                     </div>
+                   </div>
+                  </ng-container>
                 </div>
               </div>
             </div>
-            <div class="notify-btn-container" *ngIf="!cartObj.isInStock">
-              <button type="button" class="round-black-btn">Notify Me</button>
-            </div>
-          </div>
-        </main>
-        <aside class="col-lg-3 col-md-3 col-sm-4 col-12 col-12">
-          <div class="px-0 border rounded-2 shadow-0">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Similar items</h5>
-                <div class="d-flex mb-3 justify-content-start" *ngFor="let similarProd of similarProducts" (click)="ViewProduct(similarProd)">
-                  <a class="me-3">
-                    <img [src]="similarProd.imageUrl" class="img-md img-thumbnail" />
-                  </a>
-                  <div class="info d-lg-block d-md-none d-sm-none">
-                    <a class="nav-link mb-1">
-                      {{ similarProd.title}} 
-                    </a>
-                    <strong class="text-dark"> {{similarProd.price | currency : 'R'}}</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
     </div>
   

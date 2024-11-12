@@ -1,9 +1,10 @@
-      <div class="container" id="products" *ngIf="!isLoading">
+
+      <div class="container" id="products" *ngIf="products">
         <header  class="fw-bold mb-3 text-black fs-4">{{headerText}}</header>
-        <div class="row ms-3 fw-bold">[{{products?.length}}] products</div>
+        <div class="row ms-3 fw-bold">[{{products.length}}] products</div>
         <hr>
         <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-4 col-sm-4 col-5 p-1" *ngFor="let product of products" [routerLink]="'Product-View/'+product.title" [state]="product">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-5 p-1" *ngFor="let product of products" [routerLink]="'/Home/Product-View/'+product.id">
             <div class="card">
                 <img [src]="product.imageUrl" class="card-img-top" alt="">
                 <div class="star-icons d-flex flex-row">
@@ -42,6 +43,6 @@
           </div>
         </div>
      </div>
-     <div class="d-flex justify-content-center align-items-center" style="height: 75vh;" *ngIf="isLoading">
-       <app-loader></app-loader>
-     </div>
+     <div *ngIf="!products?.length" class="w-100 d-flex justify-content-center align-items-center" style="height: 50vh;">
+      <app-loader></app-loader>
+    </div>

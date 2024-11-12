@@ -13,7 +13,7 @@ export class ProductListComponent {
   constructor(private cd : ChangeDetectorRef){}
 
   headerText : string = '';
-  isLoading : boolean = false;
+  isLoading : boolean = true;
   products : Product[] | undefined  = [];
 
   router : Router = inject(Router);
@@ -25,7 +25,7 @@ export class ProductListComponent {
     this.prodService.GetAllProducts();
     this.prodService.GetProductsFiltered();
     this.prodService.SubscribeToProducts().subscribe({
-      next : (prodArray) => { this.products = prodArray; },
+      next : (prodArray) => { this.products = prodArray;},
       error : (error) => { this.notifyService.ShowErrorNotification(error) }
     })
     this.prodService.textSubject.subscribe({
@@ -34,6 +34,5 @@ export class ProductListComponent {
       this.cd.detectChanges(); },
       error : (error) => { this.notifyService.ShowErrorNotification(error) }
     });
-    this.isLoading = false;
   }
 }

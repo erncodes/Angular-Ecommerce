@@ -10,7 +10,7 @@ export class NotificationService {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   ShowSuccessNotification(message : string){
-    this.snackBar.open(message,"close",
+    this.snackBar.open(message,"X",
       {
         duration :2000,  
         horizontalPosition: this.horizontalPosition,
@@ -20,7 +20,7 @@ export class NotificationService {
   }
 
   ShowErrorNotification(error : string){
-    this.snackBar.open(error,"close",
+    this.snackBar.open(error,"X",
       {
         duration :2000,  
         horizontalPosition: this.horizontalPosition,
@@ -29,7 +29,7 @@ export class NotificationService {
       });
   }
   ShowInfoNotification(info : string){
-    this.snackBar.open(info,"close",
+    this.snackBar.open(info,"X",
       {
         duration :2000,  
         horizontalPosition: this.horizontalPosition,

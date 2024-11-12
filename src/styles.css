@@ -32,20 +32,25 @@
 .custom-snackbar .mat-mdc-button.mat-mdc-snack-bar-action {
   color: rgb(0, 0, 0) !important;
   font-weight: bold !important;
+  border-radius: 3px 3px 10px 10px;
 }
 .snackbar-success .mdc-snackbar__surface {
   background-color: #ffffff !important;
+  border-radius: 3px 3px 10px 10px !important;
+
 }
 .snackbar-success .mdc-snackbar__label {
-  color: rgb(33, 248, 0) !important;
+  color: rgb(25, 211, 0) !important;
   font-weight: bold !important;
+
 }
 .snackbar-error .mdc-snackbar__surface {
-  background-color: red !important;
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 3px 3px 10px 10px !important;
 }
 
 .snackbar-error .mdc-snackbar__label {
-  color: white !important;
+  color: rgb(255, 0, 0) !important;
   font-weight: bold !important;
 }
 /***End Of Custom Snackbar Styling***/

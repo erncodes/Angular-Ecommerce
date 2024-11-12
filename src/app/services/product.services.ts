@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Product } from "../models/product";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject,Subject } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
@@ -10,8 +10,9 @@ import { map } from "rxjs/operators";
 export class ProductService{
   products : Product[] = [];
   filteredProdArray : any[] = [];
-  productClicked : BehaviorSubject<any> = new BehaviorSubject<any>('');
+  productClicked : Subject<any> = new Subject<any>();
   textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
+  similarProds : BehaviorSubject<[]> = new BehaviorSubject<any>([]);
   
   httpClient : HttpClient = inject(HttpClient);
    //Filter products based on filter text,return popular if no text passed
@@ -54,7 +55,17 @@ export class ProductService{
       this.filteredProdsSub.next(this.GetProductsFiltered());
     });
    }
-
+   GetProductById( id : string | undefined){
+    this.httpClient.get<{[key : string] : Product}>('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products/'+id+'.json')
+    .pipe(map((response)=>{
+      let prod = {};
+      prod = {...response, id : id};
+      return prod;
+    })).subscribe((product)=>{
+      this.productClicked.next(product);
+    }
+    )
+   }
     SubscribeToProducts(){ 
           return this.filteredProdsSub.asObservable();
     }
@@ -90,12 +101,6 @@ export class ProductService{
         return this.products.slice(0,3);
       }
       return returnProducts;
-    }
-
-    PostProductsToApi(){
-      this.products.forEach((prod)=>{
-        this.httpClient.post('https://urbanstrides-640e5-default-rtdb.europe-west1.firebasedatabase.app/products.json',prod).subscribe();
-      })
     }
     
    filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);

@@ -13,15 +13,20 @@
     .card:hover .card-img-top{
         transform: scale(1.05);
     }
+    .fa-star{
+        color: #07393C;
+    }
     .price-tag{
         background-color: #000000;
-        color: #D1FF65;
+        color: #ffffff;
+        border-radius: 3px 3px 10px 10px;
         padding: 0px 5px 0;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
     .price-tag p{
         margin: auto 0;
         font-size: small;
+        padding: 10px;
     }
     .discounted-price{
         text-decoration: line-through;
@@ -33,7 +38,7 @@
         position: absolute;
         top: 5%;
         right: 0;
-        color: #ffffff;
+        color: #0cf918;
         background-color: #000000;
         padding: 2.5px 5px;
     }
@@ -49,9 +54,7 @@
         padding: 0.5px 5px;
         transition: all 0.5s ease-in-out;
     }
-    .fa-star{
-        color: #000000;
-    }
+   
     .sizes{
         border: 0.5px solid black;
         margin: 5px;
@@ -68,16 +71,16 @@
         position: absolute;
         bottom: -15%;
         left: 0;
-        width: 100%;
+        width:115%;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all 0.5s ease-in-out;
     }
     .card:hover .size-div{
-        transform: translateY(-150%);
+        transform: translate(3.5%,-150%);
         width: 100%;
-        z-index: 6;
+        z-index: 4;
     }
 }
 @media (min-width:355px){

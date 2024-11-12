@@ -14,7 +14,7 @@
         background-color: red;
     }
     .fa-star{
-        color: #D1FF65;
+        color: #07393C;
     }
     .img-container{
         position: relative;
@@ -35,7 +35,7 @@
         align-items: center;
     }
     .notify-btn-container button{
-        border-bottom: 4px solid #D1FF65;
+        border-bottom: 4px solid #07393C;
         background-color: black;
         color: white;
 }
