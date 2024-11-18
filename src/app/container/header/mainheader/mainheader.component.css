@@ -30,10 +30,15 @@
     height: 80px;
     border-radius: 50%;
   }
+  small{
+    font-style: italic;
+  }
   .brand-container{
-    border-top: 2px solid #07393C;
+    line-height: 20px;
+    border-radius: 15%;
     border-bottom: 2px solid #07393C;
-    box-shadow: rgb(0, 0, 0) 0px 10px 5px -5px;
+    box-shadow: #000000 0px 10px 5px -5px;
+    padding-bottom: 10px;
   }
   .brand-container a {
     margin: auto 0;

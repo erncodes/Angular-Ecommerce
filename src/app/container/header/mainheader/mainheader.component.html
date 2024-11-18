@@ -1,12 +1,13 @@
 
-  <nav class="navbar navbar-expand-lg bg-white py-4 px-5">
-    <div class="brand-logo ms-4 mb-3">
+  <nav class="navbar navbar-expand-lg bg-white px-lg-5 px-md-4 px-sm-3 px-3">
+    <div class="brand-logo ms-4 text-start">
         <img src="./../../../../assets/images/Logo.jpg" class="logo-img"/>
-        <div class="brand-container">
-          <a class="navbar-brand" routerLink="Home" (click)="GoHome()">Urban Strides</a>
+        <div class="brand-container text-center">
+          <a class="navbar-brand" routerLink="Home" (click)="GoHome()">Urban Strides</a><br>
+          <small>since 1996</small>
         </div>
     </div>
-    <div class="ms-auto col-lg-1 col-md-3 col-sm-3 col-7">
+    <div class="ms-auto col-lg-1 col-md-3 col-sm-3 col-7 d-lg-block d-md-block d-none">
         <app-search></app-search>
     </div>
     <ul class="navbar-nav ms-auto pe-2 d-lg-flex d-md-none d-sm-none d-none">
@@ -41,15 +42,18 @@
               <span class="cartCount" *ngIf="cartCount">{{cartCount}}</span>
                 <a class="nav-link" routerLink="Home/Cart"><i class="fa fa-shopping-bag"></i></a>
             </li>
-            <li class="nav-item cartContainer-li">
+            <li class="nav-item cartContainer-li" (click)="ToggleNav()">
               <span class="cartCount" *ngIf="">{{cartCount}}</span>
                 <a class="nav-link" routerLink="Home/WishList"> <i class="fa fa-heart-o"></i></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" (click)="ToggleNav()">
               <a class="nav-link" routerLink="Home">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" (click)="ToggleNav()">
               <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <app-search></app-search>
             </li>
           <hr>
         </ul>

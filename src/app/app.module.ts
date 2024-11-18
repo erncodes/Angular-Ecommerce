@@ -27,6 +27,7 @@ import { HeroComponent } from './container/home/hero/hero.component';
 import { ContainerComponent } from './container/container.component';
 import { LoaderComponent } from './container/loader/loader.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { PaymentConfirmationComponent } from './container/home/products-cart/checkout/payment-confirmation/payment-confirmation.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     HeroComponent,
     LoaderComponent,
     WishlistComponent,
+    PaymentConfirmationComponent,
   ],
   imports: [
     FormsModule,

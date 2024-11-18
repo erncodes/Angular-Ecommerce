@@ -2,6 +2,7 @@ import { NgForm } from '@angular/forms';
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/productCart.services';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-checkout',
@@ -12,6 +13,7 @@ export class CheckoutComponent implements OnInit {
   selectedDelivery : string = '';
   promoCode : string = '';
   cartTotal : number = 0;
+  order : Order | undefined = undefined; 
   promoDiscount : number = 0;
   fastShipping_Fee : number = 125;
   standardShipping_Fee : number = 75;
@@ -54,11 +56,13 @@ export class CheckoutComponent implements OnInit {
    CreateOrder(ngForm : NgForm){
       if(ngForm.invalid)
       {
-        this.showPaymentPage = !this.showPaymentPage;
+        console.log(ngForm.value);
+
       }
       else
       {
-        console.log(ngForm.value);
+        //this.order = new Order()
+        this.showPaymentPage = !this.showPaymentPage;
       }
    }
 }

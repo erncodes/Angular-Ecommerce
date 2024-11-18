@@ -23,7 +23,7 @@
         align-items: center;
     }
     .quantity-span{
-        outline: none;
+        outline: none; 
         border: none;
         margin: auto 5px;
         font-weight: bold;
@@ -39,11 +39,12 @@
         height: 200px;
         width: auto;
     }
-    .no-items-container button{
+    .btn{
        background-color: #000;
        color: white;
        border-bottom: 4px solid #07393C;
        width: auto;
        border-radius: 10px;
     }
+
 }

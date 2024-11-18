@@ -10,9 +10,12 @@ import { map } from "rxjs/operators";
 export class ProductService{
   products : Product[] = [];
   filteredProdArray : any[] = [];
+  searchProducts : Product[] = [];
   productClicked : Subject<any> = new Subject<any>();
-  textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
   similarProds : BehaviorSubject<[]> = new BehaviorSubject<any>([]);
+  textSubject : BehaviorSubject<string> = new BehaviorSubject<string>('All');
+  productSearchSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   
   httpClient : HttpClient = inject(HttpClient);
    //Filter products based on filter text,return popular if no text passed
@@ -53,6 +56,7 @@ export class ProductService{
     })).subscribe((products)=>{
       this.products = products;
       this.filteredProdsSub.next(this.GetProductsFiltered());
+      this.productSearchSub.next(this.GetProductsFiltered());
     });
    }
    GetProductById( id : string | undefined){
@@ -67,13 +71,15 @@ export class ProductService{
     )
    }
     SubscribeToProducts(){ 
-          return this.filteredProdsSub.asObservable();
+      return this.filteredProdsSub.asObservable();
     }
-
+    SubcribeToSearchProducts(){
+      return this.productSearchSub.asObservable();
+    }
     //Search products based on title
     Searchproducts(text: string){
       this.filteredProdArray = this.products.filter( prod => prod.title.toLowerCase().includes(text.toLocaleLowerCase()));
-      this.productSearch.next(this.filteredProdArray);
+      this.productSearchSub.next(this.filteredProdArray);
       return this.filteredProdArray;
     }
     
@@ -102,8 +108,6 @@ export class ProductService{
       }
       return returnProducts;
     }
-    
-   filteredProdsSub : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-   productSearch : BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products.slice(0,4));
+
 
 }

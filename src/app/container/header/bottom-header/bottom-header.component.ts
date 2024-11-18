@@ -24,11 +24,11 @@ export class BottomHeaderComponent {
     if(bottom){
               if(screen.width <= 573)
                 {
-                  bottom += 50;
+                  bottom += 140;
                 }
                 else if(screen.width > 573 && screen.width <= 575)
                 {
-                  bottom += 90;
+                  bottom += 140;
                 }
                 else if(screen.width > 575)
                 {

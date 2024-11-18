@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,ChangeDetectorRef } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.services';
 import { Router } from '@angular/router';
@@ -10,8 +10,9 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./search-combo.component.css']
 })
 export class SearchComboComponent {
+  constructor(private cd : ChangeDetectorRef){}
   SearchText : string = '';
-  products : Product[] = [];
+  products : Product[] | undefined = [];
   searchMode : boolean = false;
   
   router : Router = inject(Router);
@@ -23,17 +24,21 @@ export class SearchComboComponent {
     }
 
   ngOnInit(){
-      this.prodService.productSearch.subscribe({
-        next : (data) => {this.products = data;},
+    this.prodService.GetAllProducts();
+      this.prodService.SubcribeToSearchProducts().subscribe({
+        next : (data) => {this.products = data.filter(prod => prod.rating > 4.9);},
         error: (error)=>{ this.notifyService.ShowErrorNotification(error) }
       })
+      console.log(this.products)
     }
 
   SearchProduct(text : any){
       this.prodService.Searchproducts(text);
     }
     
-  ViewProduct(prod : any){
+  ViewProduct(prod : Product){
+      this.router.navigate(['/Home/Product-View/'+ prod.id]);
+      this.cd.detectChanges();
       this.ToggleSearch();
     }
 }

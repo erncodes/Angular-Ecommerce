@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="main-heading mb-1 fw-bold">My Cart</div>
                 <div class="table-list">
-                    <table cellpadding="0" cellspacing="0" width="100%">
+                    <table cellpadding="0" cellspacing="0" width="100%" *ngIf="cartProducts.length != 0">
                         <thead>
                             <tr>
                                 <th width="30%">Product Name</th>
@@ -18,7 +18,7 @@
                         <tbody>
                             <tr *ngFor="let product of cartProducts,let i = index">
                                 <td width="30%">
-                                    <div class="display-flex align-center">
+                                    <div class="display-flex align-center text-end">
                                         <div class="img-product">
                                             <img [src]="product.imageUrl" alt="" class="mCS_img_loaded">
                                         </div>
@@ -37,7 +37,7 @@
                                         <button (click)="IncreaseQuantity(product)" class="quantity-btn">+</button>
                                     </div>
                                 </td>
-                                <td width="10%" class="text-center"><a class="trash-icon"><i class="far fa-trash-alt" (click)="RemoveItem(product,i)"></i></a></td>
+                                <td width="10%" class="text-start"><a class="trash-icon"><i class="far fa-trash-alt" (click)="RemoveItem(product,i)"></i></a></td>
                             </tr>
                             <tr>
                                 <div class="row justify-content-end" style="border-top: 1px solid rgba(0,0,0,.1);">
@@ -47,6 +47,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-end">
+                        <a [routerLink]="'CheckOut'" class="btn" *ngIf="cartProducts.length != 0">CheckOut</a>
+                    </div>
                 </div>
                 <div class="no-items-container" *ngIf="cartProducts.length == 0">
                     <h5 class="fw-bold">Your Cart Is Empty</h5>

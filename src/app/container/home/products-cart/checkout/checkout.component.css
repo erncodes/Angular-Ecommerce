@@ -1,8 +1,8 @@
 @media(min-width:320px){
     select{
         border: 1px solid rgba(0, 0, 0, 0.137);
-        padding: 1.5vh 1vh;
-        margin-bottom: 4vh;
+        padding: 10px 7.5px;
+        margin-bottom: 5px;
         outline: none;
         width: 100%;
         background-color: rgb(247, 247, 247);
@@ -20,6 +20,9 @@
     }
     .ng-touched.ng-invalid{
         border: red 1px solid !important;
+    }
+    .ng-touched.ng-valid{
+        border: #00ff1e 1px solid !important;
     }
 }
 

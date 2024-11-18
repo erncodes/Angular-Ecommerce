@@ -1,32 +1,53 @@
-<button class="round-black-btn" (click)="ToggleSearch()">
-    <h5 class="fw-bold"><i class="fa fa-search"></i>Search</h5>
+<button class="btn" (click)="ToggleSearch()">
+    <h5 class="fw-bold my-auto"><i class="fa fa-search"></i>Search</h5>
 </button>
 <div [class]="searchMode? 'search-outlet active' : 'search-outlet'">
-    <div class="search-container p-5">
+    <div class="search-container pt-2 text-center">
+        <h3 class="text-white mb-3 ms-2 title">Search For Your Favourite Brands!</h3>
         <div class="row">
-            <div class="col-10 mb-3">
-                <div class="container h-100">
-                    <div class="d-flex justify-content-center h-100">
-                      <div class="search">
-                        <input class="search_input" type="text" name="" placeholder="Search here..." [(ngModel)]="SearchText" (input)="SearchProduct(SearchText)">
-                        <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-                      </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="container">
+                            <div class="d-flex justify-content-center">
+                              <div class="search">
+                                <input class="search_input" type="text" name="" placeholder="Search here..." [(ngModel)]="SearchText" (input)="SearchProduct(SearchText)">
+                                <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+                              </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-2 times-container">
+                         <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
+                     </div>
                 </div>
             </div>
-            <div class="col-2 times-container">
-                 <i class="fa fa-times times-icon" (click)="ToggleSearch()"></i>
-             </div>
-             <hr>
-             <div class="col-lg-4 col-sm-2 search-links" *ngIf="!SearchText">
-                <a href="" class="nav-link">New Arrivals</a>
-                <a href="" class="nav-link">Brands</a>
+             <div class="col-lg-3 col-sm-2 search-links" *ngIf="!SearchText">
+                <a class="nav-link text-white ms-2 mb-3">New Arrivals</a>
+                <a class="nav-link text-white ms-2">Brands</a>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <header class="fw-bold" *ngIf="!SearchText">Popular</header>
-                <header class="fw-bold" *ngIf="SearchText">Search results for "{{SearchText}}"</header>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-5 card p-0 m-1 justify-content-center" *ngFor="let item of products" (click)="ViewProduct(item)">
+
+            <div class="col-lg-9 col-md-9 col-sm-12 col-12 text-start px-1">
+                <header class="fw-bold mb-3 text-white ms-5" *ngIf="!SearchText">Popular</header>
+                <header class="fw-bold mb-3 text-white" *ngIf="SearchText">Search results for "{{SearchText}}"</header>
+                <div class="row px-3 justify-content-center" *ngIf="SearchText">
+                    <ng-container *ngIf="products">
+                        <div class="col-lg-3 col-md-3 col-4 card p-0 justify-content-center" *ngFor="let item of products" (click)="ViewProduct(item)">
+                            <img [src]="item.imageUrl" class="card-img-top" alt="">
+                            <div class="">
+                                <h5 class="card-title">{{item.title}}</h5>
+                                <div class="price-tag">
+                                    <p class="fw-bold">{{item.price | currency : 'R'}}</p>
+                                </div>
+                                <ng-template #stockinfo>
+                                    <p class="fw-bold text-danger">Out Of Stock</p>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row px-5 justify-content-center" *ngIf="!SearchText">
+                    <div class="col-lg-3 col-md-3 col-4 card justify-content-center" *ngFor="let item of products" (click)="ViewProduct(item)">
                         <img [src]="item.imageUrl" class="card-img-top" alt="">
                         <div class="">
                             <h5 class="card-title">{{item.title}}</h5>

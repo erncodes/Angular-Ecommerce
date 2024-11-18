@@ -30,9 +30,8 @@
 }
 
 .custom-snackbar .mat-mdc-button.mat-mdc-snack-bar-action {
-  color: rgb(0, 0, 0) !important;
+  color: #ff0000 !important;
   font-weight: bold !important;
-  border-radius: 3px 3px 10px 10px;
 }
 .snackbar-success .mdc-snackbar__surface {
   background-color: #ffffff !important;
@@ -117,15 +116,14 @@
 	align-items: center;
 }
 .round-black-btn {
-	border-radius: 25px;
-    background: #000000;
+	border-radius: 5px 45% 5px 45%;
+    background: #07393b;
     color: #fff;
     padding: 5px 20px;
     display: flex !important;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: solid 2px #212529; 
     transition: all 0.5s ease-in-out 0s;
     cursor: pointer;
     font-size: 14px;
@@ -152,10 +150,10 @@
 }
 .pretty input:checked~.state.p-primary-o label:before, 
 .pretty.p-toggle .state.p-primary-o label:before {
-    border-color: #8660e9;
+    border-color: #68716b;
 }
 .pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label:after {
-    background-color: #8660e9 !important;
+    background-color: #68716b !important;
 }
 .main-heading.border-b {
     border-bottom: solid 1px #ededed;
@@ -185,7 +183,7 @@
     margin-top: 40px !important; 
 }
 .in-stock-box {
-	background: #347e09;
+	background: #419f0a;
 	font-size: 12px;
 	text-align: center;
 	border-radius: 25px;

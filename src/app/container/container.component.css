@@ -10,10 +10,10 @@
         z-index: 5;
       }
     .router-outlet{
-        margin-top: 180px;
+        margin-top: 70px;
     }
     .router-outlet.other{
-        margin-top: 230px;
+        margin-top: 125px;
     }
     .path-display
     {
@@ -30,9 +30,9 @@
 }
 @media (min-width: 576px) {
     .router-outlet.other{
-        margin-top: 175px;
+        margin-top: 125px;
     }
     .router-outlet{
-        margin-top: 220px;
+        margin-top: 130px;
     }
 }
